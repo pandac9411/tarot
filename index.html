@@ -1,0 +1,1821 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15242b">
+  <meta name="description" content="夜航塔罗：选择主题与牌阵，逐张抽取 1、3、5、7、9、10、12 或 36 张牌，阅读牌位与完整汇总。">
+  <title>夜航塔罗 · 选择牌阵，逐张抽牌</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2315242b'/%3E%3Cpath d='M32 8v48M8 32h48M15 15l34 34M49 15 15 49' stroke='%23bfa779' stroke-width='1.2'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%2315242b' stroke='%23bfa779' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='3' fill='%23bfa779'/%3E%3C/svg%3E">
+  <style>
+    :root{--night:#15242b;--night-deep:#101c22;--night-soft:#20343b;--gold:#bfa779;--gold-dim:#806e55;--paper:#eee5d2;--paper-dark:#d9c9ad;--text:#ede6d8;--muted:#b4b7ab;--red:#b47665}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--night);color:var(--text);font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}[hidden]{display:none!important}button{font:inherit}button:focus-visible{outline:3px solid #e6c58f;outline-offset:4px}button:disabled{cursor:default}::selection{background:var(--gold);color:var(--night)}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+    .site{min-height:100vh;position:relative;overflow:hidden;background:radial-gradient(circle at 12% 48%,rgba(72,95,95,.21),transparent 36%),radial-gradient(circle at 92% 2%,rgba(125,95,66,.12),transparent 30%),var(--night)}
+    .site::before{content:"";position:absolute;width:800px;height:800px;border:1px solid rgba(191,167,121,.07);border-radius:50%;left:-500px;top:230px;box-shadow:0 0 0 90px rgba(191,167,121,.018),0 0 0 180px rgba(191,167,121,.018);pointer-events:none}
+    .wrap{width:min(100% - 88px,1390px);margin:auto;position:relative}
+    header{height:91px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(191,167,121,.27);gap:15px}
+    .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}.logo-symbol{width:38px;height:38px;border:1px solid var(--gold);display:grid;place-items:center;transform:rotate(45deg);position:relative}.logo-symbol::before{content:"✦";transform:rotate(-45deg);font-size:24px;color:var(--gold)}.logo-cn{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:23px;letter-spacing:.18em;white-space:nowrap}.logo-en{font-size:10px;letter-spacing:.32em;color:var(--gold);margin-left:3px;white-space:nowrap}
+    .head-meta{font-size:11px;color:var(--gold);letter-spacing:.19em;white-space:nowrap}
+    main{min-height:calc(100vh - 154px);display:grid;grid-template-columns:minmax(280px,.8fr) minmax(500px,1.2fr);gap:clamp(34px,6vw,110px);align-items:center;padding:55px 0 55px}
+    .intro{position:relative;align-self:stretch;display:flex;justify-content:center;flex-direction:column;padding-bottom:70px}
+    .eyebrow,.mini-label,.step,.card-num,.foot-mark{letter-spacing:.25em;font-size:11px;text-transform:uppercase}.eyebrow{color:var(--gold);display:flex;align-items:center;gap:15px;margin-bottom:28px}.eyebrow::before{content:"";width:29px;height:1px;background:var(--gold)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3,.result-poem,.card-face,.logo-cn{font-family:"Songti SC","Noto Serif CJK SC","STSong",serif}h1{font-weight:400;font-size:clamp(58px,6.4vw,99px);line-height:1.27;letter-spacing:.07em;margin:0 0 28px;white-space:nowrap}h1 span{display:block}h1 em{font-style:normal;color:var(--gold)}.intro-text{max-width:370px;color:var(--muted);font-size:15px;line-height:2;letter-spacing:.02em;margin-bottom:42px}
+    .sky-chart{width:275px;height:220px;position:relative;opacity:.78}.sky-chart::before,.sky-chart::after{content:"";position:absolute;border:1px solid rgba(191,167,121,.42);border-radius:50%}.sky-chart::before{width:190px;height:190px;left:29px;top:10px}.sky-chart::after{width:126px;height:126px;left:61px;top:42px}.sky-orbit{position:absolute;left:0;top:109px;width:247px;height:1px;background:rgba(191,167,121,.35);transform:rotate(-24deg)}.sky-star{position:absolute;color:var(--gold);font-family:serif}.sky-star.a{left:150px;top:-2px;font-size:28px}.sky-star.b{left:23px;top:158px;font-size:17px}.sky-star.c{left:240px;top:126px;font-size:14px}.sky-moon{position:absolute;left:106px;top:85px;width:37px;height:37px;border-radius:50%;box-shadow:9px 0 0 0 var(--gold);transform:rotate(23deg)}
+    .app{border:1px solid rgba(191,167,121,.6);padding:8px;background:rgba(9,22,27,.48);box-shadow:0 30px 70px rgba(0,0,0,.22)}.app-inner{min-height:635px;border:1px solid rgba(191,167,121,.26);padding:clamp(24px,3vw,42px);position:relative}.app-inner::before,.app-inner::after{content:"✦";position:absolute;color:var(--gold);font-size:12px;line-height:1}.app-inner::before{top:-7px;left:18px}.app-inner::after{bottom:-7px;right:18px}
+    .app-top{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid rgba(191,167,121,.28);padding-bottom:23px}.app-top strong{font-weight:400;font-family:"Songti SC",serif;font-size:19px;letter-spacing:.17em}.app-top span{font-size:10px;color:var(--gold);letter-spacing:.22em}
+    .step{color:var(--gold);margin:31px 0 13px;font-weight:700}.app h2{font-weight:400;letter-spacing:.07em;font-size:clamp(27px,3vw,37px);line-height:1.45;margin:0 0 8px}.hint{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:21px}.topics{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:30px}.topic{min-width:77px;min-height:43px;padding:9px 15px;color:var(--text);background:transparent;border:1px solid rgba(191,167,121,.44);cursor:pointer;letter-spacing:.09em;transition:.2s}.topic:hover{border-color:var(--gold)}.topic[aria-pressed="true"]{background:var(--gold);color:var(--night-deep);border-color:var(--gold);font-weight:700}
+    .draw-line{border-top:1px solid rgba(191,167,121,.28);padding-top:24px;display:flex;align-items:baseline;justify-content:space-between;gap:12px}.draw-line h3{font-size:19px;font-weight:400;letter-spacing:.09em;margin:0 0 21px}.draw-line span{font-size:11px;color:var(--muted);white-space:nowrap}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;align-items:center}.card-back{background:var(--paper-dark);border:5px solid var(--paper-dark);padding:4px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.23);transition:transform .25s,box-shadow .25s;transform:rotate(-5deg)}.card-back:nth-child(2){transform:translateY(-10px)}.card-back:nth-child(3){transform:rotate(5deg)}.card-back:hover{transform:translateY(-15px) rotate(0);box-shadow:0 18px 35px rgba(0,0,0,.4)}.card-back:active{transform:translateY(-5px) scale(.98)}.card-design{width:100%;height:100%;background:var(--night-soft);border:1px solid var(--gold);display:grid;place-items:center;position:relative;overflow:hidden}.card-design::before{content:"";position:absolute;inset:8px;border:1px solid rgba(191,167,121,.54)}.card-design::after{content:"";position:absolute;width:110%;aspect-ratio:1;border:1px solid rgba(191,167,121,.4);border-radius:50%;box-shadow:0 0 0 19px rgba(191,167,121,.08)}.card-design span{position:relative;z-index:1;width:64px;height:64px;border:1px solid var(--gold);display:grid;place-items:center;transform:rotate(45deg);font-size:36px;color:var(--gold);line-height:1}.card-design i{font-style:normal;display:block;transform:rotate(-45deg)}.card-design b{position:absolute;z-index:2;top:15px;left:16px;color:var(--gold);font-weight:400;font-size:10px;letter-spacing:.14em}.card-design small{position:absolute;z-index:2;bottom:13px;color:var(--gold);font-size:10px;letter-spacing:.2em}
+    .result[hidden],.chooser[hidden]{display:none}.result{animation:reveal .5s ease both}.result-grid{display:grid;grid-template-columns:190px 1fr;gap:31px;padding-top:32px;align-items:start}.card-face{background:var(--paper);color:var(--night);min-height:304px;border:6px solid var(--paper-dark);padding:7px;box-shadow:0 18px 27px rgba(0,0,0,.3);position:relative}.card-face.reversed{transform:rotate(180deg)}.face-inner{min-height:278px;border:1px solid var(--gold-dim);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 8px;background:radial-gradient(circle at center,rgba(191,167,121,.18),transparent 59%)}.face-inner::before{content:"";position:absolute;inset:21px;border:1px solid rgba(128,110,85,.4);pointer-events:none}.face-num{font-size:13px;letter-spacing:.16em}.face-symbol{font-family:"Apple Symbols","Segoe UI Symbol","Songti SC",serif;font-size:85px;line-height:1;color:var(--night);text-shadow:4px 4px 0 rgba(191,167,121,.27)}.face-title{font-size:20px;letter-spacing:.12em;white-space:nowrap}.face-en{font-family:Georgia,serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.result-info{min-width:0}.result-kicker{font-size:11px;color:var(--gold);letter-spacing:.2em;margin:0 0 12px}.result-title{font-size:clamp(33px,3vw,43px)!important;white-space:nowrap;margin:0 0 5px!important}.orientation{display:inline-flex;align-items:center;gap:8px;color:var(--paper);font-size:12px;letter-spacing:.15em;margin:0 0 20px}.orientation::before{content:"";width:16px;height:1px;background:var(--gold)}.result-reading{font-size:14px;line-height:1.95;color:#d1d1c4;margin:0 0 20px}.result-action{border-top:1px solid rgba(191,167,121,.3);padding-top:17px}.result-action strong{display:block;font-size:11px;color:var(--gold);letter-spacing:.18em;margin-bottom:7px}.result-action p{font-size:13px;line-height:1.85;color:var(--text);margin:0}.again{margin-top:32px;min-height:45px;padding:10px 22px;border:1px solid var(--gold);background:var(--gold);color:var(--night-deep);cursor:pointer;letter-spacing:.1em;font-weight:700}.again:hover{background:#d4bc8c}.fine-print{margin:22px 0 0;font-size:11px;color:var(--muted);line-height:1.6;letter-spacing:.05em}
+    footer{min-height:63px;border-top:1px solid rgba(191,167,121,.27);display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px;line-height:1.6;letter-spacing:.05em}footer p{margin:0}.foot-mark{color:var(--gold);white-space:nowrap}
+    @keyframes reveal{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+    @media(min-width:821px) and (max-width:1100px){main{grid-template-columns:minmax(220px,.75fr) minmax(440px,1.25fr);gap:28px;padding:28px 0}.intro{padding-bottom:0}.intro h1{font-size:clamp(39px,4.6vw,49px)}.intro-text{font-size:13px}.sky-chart{transform:scale(.72);transform-origin:left top;margin-top:-10px;height:155px}.app-inner{padding:26px;min-height:0}.cards{gap:10px}}@media(max-width:820px){main{grid-template-columns:1fr;gap:20px;padding:42px 0}.intro{padding:0}.intro h1{font-size:64px}.intro h1 span{display:inline}.intro h1 span+span::before{content:" ";white-space:pre}.intro-text{margin-bottom:0}.sky-chart{display:none}.app-inner{min-height:0}}
+    @media(max-width:650px){.wrap{width:calc(100% - 34px)}header{height:71px}.logo{gap:10px}.logo-symbol{width:29px;height:29px}.logo-symbol::before{font-size:18px}.logo-cn{font-size:17px}.logo-en{display:none}.head-meta{font-size:9px;letter-spacing:.08em}main{padding:33px 0 30px;gap:25px;min-width:0}.intro,.app{min-width:0}.intro h1 span{display:block}.intro h1 span+span::before{content:none}.eyebrow{margin-bottom:14px}.intro h1{font-size:49px;line-height:1.24;margin-bottom:11px}.intro-text{font-size:13px;line-height:1.8}.app{padding:5px}.app-inner{padding:23px 17px 28px}.app-top{padding-bottom:17px}.app-top strong{font-size:16px}.app-top span{font-size:9px;letter-spacing:.08em}.step{margin-top:24px}.app h2{font-size:27px}.topics{gap:8px;margin-bottom:25px}.topic{min-width:calc(50% - 4px)}.draw-line{padding-top:19px}.draw-line h3{font-size:17px}.draw-line span{font-size:10px}.cards{gap:9px}.card-back{border-width:4px;padding:3px}.card-design::after{width:130%}.card-design span{width:44px;height:44px;font-size:25px}.card-design b{left:10px;top:11px;font-size:9px}.card-design small{font-size:8px;letter-spacing:.08em}.result-grid{grid-template-columns:125px 1fr;gap:17px;padding-top:25px}.card-face{min-height:211px;border-width:4px;padding:4px}.face-inner{min-height:195px;padding:6px 3px}.face-inner::before{inset:13px}.face-num{font-size:10px}.face-symbol{font-size:54px}.face-title{font-size:15px}.face-en{font-size:7px}.result-kicker{font-size:10px}.result-title{font-size:29px!important}.orientation{font-size:11px;margin-bottom:12px}.result-reading{font-size:12px;line-height:1.85;margin-bottom:13px}.result-action{padding-top:12px}.result-action p{font-size:12px}.again{margin-top:24px}footer{padding:14px 0;align-items:flex-start}.foot-mark{font-size:9px}}
+    @media(max-width:390px){.result-grid{grid-template-columns:1fr}.card-face{width:142px;margin:auto}.result-info{padding-top:5px}}
+    .count-head{border-top:1px solid rgba(191,167,121,.28);padding-top:23px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}.count-head h3{font-size:19px;font-weight:400;letter-spacing:.09em;margin:0 0 16px}.count-head span{font-size:11px;color:var(--muted)}
+    .counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:19px}.count{min-width:0;min-height:70px;display:flex;align-items:center;justify-content:flex-start;text-align:left;gap:12px;padding:10px 13px;border:1px solid rgba(191,167,121,.42);background:transparent;color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,color .2s}.count:hover{border-color:var(--gold)}.count[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--night-deep)}.count strong{font-family:Georgia,serif;font-size:26px;font-weight:400;line-height:1;flex:none}.count span{min-width:0;display:flex;flex-direction:column;gap:3px}.count b{font-family:"Songti SC",serif;font-size:14px;font-weight:400;letter-spacing:.03em;line-height:1.25}.count small{font-size:10px;letter-spacing:.02em;opacity:.76;line-height:1.25}
+    .spread-preview{border:1px solid rgba(191,167,121,.38);padding:16px 17px 13px;margin:0 0 27px;background:rgba(191,167,121,.055)}.spread-preview-top{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--gold);font-size:10px;letter-spacing:.13em}.spread-preview-top strong{font-family:Georgia,serif;font-size:12px;font-weight:400;white-space:nowrap}.spread-preview h4{font-family:"Songti SC",serif;font-weight:400;font-size:21px;letter-spacing:.08em;margin:10px 0 5px}.spread-preview p{font-size:12px;color:#d0cec3;line-height:1.75;margin:0}.spread-preview ol{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:13px 0 0}.spread-preview li{border:1px solid rgba(191,167,121,.32);padding:5px 8px;font-size:11px;color:var(--paper);line-height:1.35}.spread-preview li em{font-family:Georgia,serif;font-style:normal;color:var(--gold);margin-right:5px}.spread-preview .spread-preview-note{border-top:1px solid rgba(191,167,121,.23);padding-top:10px;margin-top:12px;color:var(--gold);font-size:11px}
+    .spread-intro .step{margin:27px 0 10px}.spread-intro h2{margin-bottom:6px}.spread-intro .hint{margin-bottom:21px}.spread-layout{min-width:0}.spread-board:empty{display:none}.spread-section{border-top:1px solid rgba(191,167,121,.28);padding-top:18px;margin-top:14px}.spread-section h3,.spread-section summary{font-family:"Songti SC",serif;font-size:17px;font-weight:400;letter-spacing:.1em;color:var(--paper);margin:0 0 15px}.spread-section summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:42px}.spread-section summary::-webkit-details-marker{display:none}.spread-section summary::after{content:"＋";font-family:sans-serif;font-size:16px;color:var(--gold)}.spread-section[open] summary::after{content:"－"}.spread-section summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    .spread-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}.spread-tile{min-width:0;min-height:126px;border:1px solid rgba(191,167,121,.46);background:var(--night-soft);color:var(--text);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;padding:11px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}.spread-tile:hover{transform:translateY(-3px);border-color:var(--gold)}.spread-tile[aria-pressed="true"]{border-color:var(--gold);background:#31443e;box-shadow:inset 0 0 0 1px var(--gold)}.tile-meta{font-family:Georgia,serif;font-size:10px;color:var(--gold);letter-spacing:.14em}.tile-symbol{font-family:"Apple Symbols","Segoe UI Symbol","Songti SC",serif;font-size:32px;color:var(--gold);align-self:center;line-height:1}.tile-name{font-family:"Songti SC",serif;font-size:15px;line-height:1.3;letter-spacing:.02em}.tile-pos{font-size:10px;color:var(--muted);line-height:1.4}.tile-orient{font-size:10px;color:var(--gold)}
+    .spread-board[data-count="5"] .spread-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.spread-board[data-count="5"] .spread-tile:nth-child(1){grid-column:2;grid-row:2}.spread-board[data-count="5"] .spread-tile:nth-child(2){grid-column:1;grid-row:2}.spread-board[data-count="5"] .spread-tile:nth-child(3){grid-column:3;grid-row:2}.spread-board[data-count="5"] .spread-tile:nth-child(4){grid-column:2;grid-row:1}.spread-board[data-count="5"] .spread-tile:nth-child(5){grid-column:2;grid-row:3}
+    .spread-board[data-count="7"] .spread-tiles{grid-template-columns:repeat(5,minmax(0,1fr))}.spread-board[data-count="7"] .spread-tile:nth-child(1){grid-column:1;grid-row:3}.spread-board[data-count="7"] .spread-tile:nth-child(2){grid-column:1;grid-row:2}.spread-board[data-count="7"] .spread-tile:nth-child(3){grid-column:2;grid-row:1}.spread-board[data-count="7"] .spread-tile:nth-child(4){grid-column:3;grid-row:1}.spread-board[data-count="7"] .spread-tile:nth-child(5){grid-column:4;grid-row:1}.spread-board[data-count="7"] .spread-tile:nth-child(6){grid-column:5;grid-row:2}.spread-board[data-count="7"] .spread-tile:nth-child(7){grid-column:5;grid-row:3}
+    .spread-board[data-count="10"] .spread-section:first-child .spread-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(1){grid-column:2;grid-row:2}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(2){grid-column:3;grid-row:2}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(3){grid-column:2;grid-row:3}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(4){grid-column:1;grid-row:2}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(5){grid-column:2;grid-row:1}.spread-board[data-count="10"] .spread-section:first-child .spread-tile:nth-child(6){grid-column:4;grid-row:2}.spread-board[data-count="10"] .spread-section:last-child .spread-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+    @media(max-width:650px){.spread-board[data-count="7"] .spread-tiles,.spread-board[data-count="10"] .spread-section:first-child .spread-tiles,.spread-board[data-count="10"] .spread-section:last-child .spread-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.spread-board[data-count="7"] .spread-tile,.spread-board[data-count="10"] .spread-section:first-child .spread-tile{grid-column:auto!important;grid-row:auto!important}.spread-board[data-count="10"] .spread-section:last-child .spread-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .reading-panel{min-width:0}.reading-panel .result-grid{border-top:1px solid rgba(191,167,121,.28);padding-top:23px}.result[data-count="1"] .spread-board,.result[data-count="1"] .reading-nav{display:none}.reading-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid rgba(191,167,121,.28);margin-top:18px;padding-top:15px}.reading-nav button{min-height:42px;border:1px solid rgba(191,167,121,.54);background:transparent;color:var(--paper);padding:8px 12px;cursor:pointer;font-size:12px}.reading-nav button:hover:not(:disabled){background:var(--gold);color:var(--night)}.reading-nav button:disabled{opacity:.35}.reading-nav span{font-family:Georgia,serif;font-size:12px;color:var(--gold);white-space:nowrap}
+    main.expanded{display:block;padding:38px 0 55px;min-height:0}main.expanded .intro{display:none}main.expanded .app{max-width:none}main.expanded .app-inner{min-height:0}main.expanded .spread-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.85fr);gap:34px;align-items:start}main.expanded .reading-panel{position:sticky;top:20px}main.expanded .reading-panel .result-grid{display:block}main.expanded .card-face{width:172px;min-height:275px;margin:0 auto 22px}main.expanded .face-inner{min-height:249px}main.expanded .face-symbol{font-size:72px}main.expanded .face-title{font-size:18px}main.expanded .result-title{font-size:30px!important;white-space:normal}main.expanded .result-reading{font-size:13px;line-height:1.8}main.expanded .again{margin-top:22px}
+    @media(max-width:820px){main.expanded{padding:25px 0 35px}main.expanded .spread-layout{grid-template-columns:1fr;gap:16px}main.expanded .reading-panel{position:static}main.expanded .reading-panel .result-grid{display:grid;grid-template-columns:145px 1fr;gap:18px}main.expanded .card-face{width:auto;min-height:225px;margin:0}main.expanded .face-inner{min-height:199px}main.expanded .face-symbol{font-size:53px}main.expanded .face-title{font-size:15px}}
+    @media(max-width:650px){.count-head h3{font-size:17px}.count-head span{font-size:10px}.counts{gap:7px}.count{min-height:65px;gap:8px;padding:8px}.count strong{font-size:21px}.count b{font-size:12px}.count small{font-size:9px}.spread-preview{padding:14px 12px}.spread-preview h4{font-size:19px}.spread-tiles{gap:7px}.spread-tile{min-height:118px;padding:8px}.tile-name{font-size:13px}.tile-symbol{font-size:26px}.tile-pos{font-size:9px}main.expanded .reading-panel .result-grid{grid-template-columns:120px 1fr;gap:15px}main.expanded .card-face{min-height:203px}main.expanded .face-inner{min-height:177px}main.expanded .face-symbol{font-size:47px}main.expanded .result-title{font-size:26px!important}.result-info{overflow-wrap:anywhere}}
+    @media(max-width:390px){main.expanded .reading-panel .result-grid{grid-template-columns:1fr}main.expanded .card-face{width:142px;margin:0 auto}}
+    .pick-context{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:22px;color:var(--gold);font-size:13px;letter-spacing:.13em}.pick-context button,.picked-top button{border:0;border-bottom:1px solid var(--gold);background:transparent;color:var(--gold);padding:6px 0;cursor:pointer;font-size:12px;white-space:nowrap}.pick-status{font-size:12px;color:var(--muted);letter-spacing:.08em;line-height:1.7;margin-top:17px}.pick-progress{height:4px;background:rgba(191,167,121,.21);margin:10px 0 20px;overflow:hidden}.pick-progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .28s}.picked{border-top:1px solid rgba(191,167,121,.28);margin-top:24px;padding-top:15px}.picked-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px;font-size:12px;color:var(--gold);letter-spacing:.08em}.picked-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-color:var(--gold-dim) transparent}.picked-card{flex:0 0 93px;min-height:94px;border:1px solid rgba(191,167,121,.48);background:var(--night-soft);padding:8px;display:flex;flex-direction:column;justify-content:space-between}.picked-card small{font-size:10px;color:var(--gold)}.picked-card strong{font-family:"Songti SC",serif;font-size:14px;font-weight:400;line-height:1.2}.picked-card span{font-size:10px;color:var(--muted)}
+    .whole-reading{border-top:1px solid rgba(191,167,121,.42);border-bottom:1px solid rgba(191,167,121,.42);padding:23px 0;margin:0 0 22px}.whole-reading .step{margin:0 0 8px}.whole-reading h3{font-size:28px;font-weight:400;letter-spacing:.09em;margin:0 0 16px}.whole-reading p{line-height:1.85;font-size:14px;color:#d4d1c4}.summary-overview{font-size:16px!important;color:var(--paper)!important}.summary-pattern{margin-bottom:20px}.summary-next{border-left:2px solid var(--gold);padding:10px 16px;background:rgba(191,167,121,.08)}.summary-next strong{display:block;color:var(--gold);font-size:11px;letter-spacing:.14em}.summary-next p{margin:6px 0 0}.summary-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:17px}.summary-section{border:1px solid rgba(191,167,121,.25);padding:14px 16px}.summary-section h4{font-family:"Songti SC",serif;color:var(--gold);font-weight:400;font-size:17px;margin:0 0 8px}.summary-section p{font-size:13px;margin:0}
+    @media(max-width:650px){.pick-context{font-size:12px}.pick-status{font-size:11px}.picked-card{flex-basis:82px;min-height:85px}.whole-reading h3{font-size:24px}.whole-reading p{font-size:13px}.summary-overview{font-size:14px!important}.summary-sections{grid-template-columns:1fr}}
+    .card-back{display:flex;width:100%;max-width:205px;height:auto;aspect-ratio:5/8;justify-self:center}.card-back .card-design{height:auto}
+    @media(max-width:650px){.topic[data-topic="silent"]{flex:1 1 100%}}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+<div class="site"><div class="wrap">
+  <header><a class="logo" href="#top" aria-label="夜航塔罗首页"><span class="logo-symbol" aria-hidden="true"></span><span class="logo-cn">夜航塔罗</span><span class="logo-en">THE NIGHT ARCANA</span></a><span class="head-meta" id="todayDate">完整塔罗 · 78 张牌</span></header>
+  <main id="top">
+    <section class="intro" aria-label="夜航塔罗介绍"><div class="eyebrow">THE NIGHT ARCANA · 01</div><h1><span>抽一组</span><span><em>此刻</em>的牌。</span></h1><p class="intro-text">心里有个问题？选一个主题和牌阵，先看看每个位置的读法，再逐张凭直觉选牌。</p><div class="sky-chart" aria-hidden="true"><span class="sky-orbit"></span><span class="sky-star a">✦</span><span class="sky-star b">✧</span><span class="sky-star c">✦</span><span class="sky-moon"></span></div></section>
+    <section class="app" aria-label="塔罗抽牌"><div class="app-inner">
+      <div class="app-top"><strong id="appTitle">一次 · 一张牌</strong><span id="progress">01 — 03</span></div>
+      <div class="chooser" id="chooser">
+        <div id="setup">
+          <p class="step">01 / YOUR QUESTION</p><h2>你想问哪方面？</h2><p class="hint">“未来规划”适合问目标和选择。其他问题可选“心里默念”：无需输入内容，汇总只看整体顺逆趋势。</p>
+          <div class="topics" role="group" aria-label="选择占问主题"><button class="topic" type="button" data-topic="today" aria-pressed="true">今日</button><button class="topic" type="button" data-topic="love" aria-pressed="false">感情</button><button class="topic" type="button" data-topic="work" aria-pressed="false">工作</button><button class="topic" type="button" data-topic="path" aria-pressed="false">未来规划</button><button class="topic" type="button" data-topic="silent" aria-pressed="false">心里默念</button></div>
+          <div class="count-head"><h3>02 / 选择牌阵</h3><span>张数与读法一并确定</span></div>
+          <div class="counts" role="group" aria-label="选择牌阵">
+            <button class="count" type="button" data-count="1" aria-pressed="true"><strong>01</strong><span><b>单张指引</b><small>当下的一点提醒</small></span></button>
+            <button class="count" type="button" data-count="3" aria-pressed="false"><strong>03</strong><span><b>三张时间线</b><small>过去 · 现在 · 趋势</small></span></button>
+            <button class="count" type="button" data-count="5" aria-pressed="false"><strong>05</strong><span><b>五张决策</b><small>比较两个选项</small></span></button>
+            <button class="count" type="button" data-count="7" aria-pressed="false"><strong>07</strong><span><b>七张马蹄</b><small>梳理影响与趋势</small></span></button>
+            <button class="count" type="button" data-count="9" aria-pressed="false"><strong>09</strong><span><b>时间九宫格</b><small>三阶段、九个角度</small></span></button>
+            <button class="count" type="button" data-count="10" aria-pressed="false"><strong>10</strong><span><b>凯尔特十字</b><small>深入理解一件事</small></span></button>
+            <button class="count" type="button" data-count="12" aria-pressed="false"><strong>12</strong><span><b>年度十二月</b><small>逐月观察主题</small></span></button>
+            <button class="count" type="button" data-count="36" aria-pressed="false"><strong>36</strong><span><b>自定义全景</b><small>六组完整梳理</small></span></button>
+          </div>
+          <section class="spread-preview" aria-label="当前牌阵的读法"><div class="spread-preview-top"><span>牌阵读法 / HOW TO READ</span><strong id="previewCount">01 张</strong></div><h4 id="previewTitle"></h4><p id="previewDescription"></p><ol id="positionPreview"></ol><p class="spread-preview-note" id="previewNote"></p></section>
+        </div>
+        <div class="pick-context" id="pickContext" hidden><span id="pickTopic"></span><button type="button" id="restartPick">重新开始</button></div>
+        <div class="pick-status" id="pickStatus" role="status" aria-live="polite"></div>
+        <div class="pick-progress" role="progressbar" aria-label="选牌进度" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" id="pickProgress"><span id="pickFill"></span></div>
+        <div class="draw-line"><h3 id="drawPrompt">03 / 静下心，选第一张</h3><span id="pickHint">每次点击只选一张</span></div>
+        <div class="cards" role="group" aria-label="选择一张塔罗牌">
+          <button class="card-back" type="button" data-card="0" aria-label="抽取左边的牌"><span class="card-design"><b>I</b><span><i>✦</i></span><small>THE ARCANA</small></span></button>
+          <button class="card-back" type="button" data-card="1" aria-label="抽取中间的牌"><span class="card-design"><b>II</b><span><i>✦</i></span><small>THE ARCANA</small></span></button>
+          <button class="card-back" type="button" data-card="2" aria-label="抽取右边的牌"><span class="card-design"><b>III</b><span><i>✦</i></span><small>THE ARCANA</small></span></button>
+        </div>
+        <div class="picked" id="picked" hidden><div class="picked-top"><span id="pickedLabel">已抽的牌</span><button id="undoPick" type="button">撤回上一张</button></div><div class="picked-list" id="pickedList" aria-label="已抽出的牌"></div></div>
+      </div>
+      <div class="result" id="result" hidden>
+        <div class="spread-intro"><p class="step">牌阵已展开</p><h2 id="spreadTitle" tabindex="-1"></h2><p class="hint" id="spreadHint"></p></div>
+        <section class="whole-reading" id="wholeReading" aria-label="完整汇总解读"><p class="step">THE WHOLE PICTURE</p><h3 id="summaryTitle">完整汇总解读</h3><p class="summary-overview" id="summaryOverview"></p><p class="summary-pattern" id="summaryPattern"></p><div class="summary-next" id="summaryNextBox"><strong>可以带走的下一步</strong><p id="summaryNext"></p></div><div class="summary-sections" id="summarySections"></div></section>
+        <div class="spread-layout"><div class="spread-board" id="spreadBoard" aria-label="抽出的塔罗牌"></div>
+          <div class="reading-panel" id="readingPanel"><div class="sr-only" id="readingAnnounce" role="status" aria-live="polite"></div><div class="result-grid"><div class="card-face" id="cardFace" aria-label="当前查看的塔罗牌"><div class="face-inner"><span class="face-num" id="faceNum"></span><span class="face-symbol" id="faceSymbol" aria-hidden="true"></span><span class="face-title" id="faceTitle"></span><span class="face-en" id="faceEn"></span></div></div><div class="result-info"><p class="result-kicker" id="resultKicker"></p><h2 class="result-title" id="resultTitle"></h2><div class="orientation" id="orientation"></div><p class="result-reading" id="reading"></p><div class="result-action"><strong>此刻可以做的一件小事</strong><p id="action"></p></div></div></div><div class="reading-nav"><button id="prevCard" type="button">← 上一张</button><span id="readingCounter"></span><button id="nextCard" type="button">下一张 →</button></div></div>
+        </div>
+        <button class="again" id="again" type="button">重新抽牌 ↗</button><p class="fine-print">牌面是一种自我探索的提示，不替你作决定。</p>
+      </div>
+    </div></section>
+  </main>
+  <footer><p>仅供自我探索与娱乐。重要决定请结合现实信息与自己的判断。</p><span class="foot-mark">FOLLOW YOUR OWN LIGHT</span></footer>
+</div></div>
+<script>
+window.TAROT_CARDS = [
+  {
+    number: 0,
+    id: "major-00",
+    arcana: "major",
+    suit: null,
+    name: "愚者",
+    en: "The Fool",
+    symbol: "✧",
+    upright: "新的可能正在展开，适合带着好奇心迈出第一步。保持开放，也记得留意脚下的现实条件。",
+    reversed: "你可能在冲动前行与迟迟不敢开始之间摇摆。先看清风险，再选择一个可以尝试的小步。",
+    action: "写下一个想尝试的小点子，并用十分钟做第一步。"
+  },
+  {
+    number: 1,
+    id: "major-01",
+    arcana: "major",
+    suit: null,
+    name: "魔术师",
+    en: "The Magician",
+    symbol: "✦",
+    upright: "你手边已有一些可用的资源和能力，关键在于把想法落实为行动。清晰表达目标会让力量更集中。",
+    reversed: "想法很多却难以落地，或沟通中出现了夸大与误解。盘点真正可用的资源，比急着承诺更有帮助。",
+    action: "列出手边三项资源，选一项今天用起来。"
+  },
+  {
+    number: 2,
+    id: "major-02",
+    arcana: "major",
+    suit: null,
+    name: "女祭司",
+    en: "The High Priestess",
+    symbol: "☾",
+    upright: "有些信息还未浮现，安静观察能帮助你听见自己的直觉。暂时不必急于给一切下结论。",
+    reversed: "你可能忽略了内心的感受，或被过多猜测困住。把事实与直觉分开看，会更容易判断。",
+    action: "静坐五分钟，记下此刻最明显的一种感受。"
+  },
+  {
+    number: 3,
+    id: "major-03",
+    arcana: "major",
+    suit: null,
+    name: "皇后",
+    en: "The Empress",
+    symbol: "♀",
+    upright: "滋养、创造与关怀是此刻的主题。给自己和正在成长的事物一些耐心与空间。",
+    reversed: "你可能把照顾别人放在自己前面，或对成果过于催促。恢复精力后，创造力更容易流动。",
+    action: "为自己安排一件简单而舒适的小事。"
+  },
+  {
+    number: 4,
+    id: "major-04",
+    arcana: "major",
+    suit: null,
+    name: "皇帝",
+    en: "The Emperor",
+    symbol: "♔",
+    upright: "秩序、边界和稳定的计划有助于推进眼前的事。承担责任时，也可以给变化留出余地。",
+    reversed: "控制得太紧或缺少清晰规则，都可能让事情卡住。重新确认边界与分工会更有效。",
+    action: "给当前任务写下一个明确、可执行的下一步。"
+  },
+  {
+    number: 5,
+    id: "major-05",
+    arcana: "major",
+    suit: null,
+    name: "教皇",
+    en: "The Hierophant",
+    symbol: "⚜",
+    upright: "传统经验、学习和可信赖的指引值得参考。理解规则背后的原因，才能决定怎样运用它。",
+    reversed: "既有做法可能不完全适合你的处境。可以尊重经验，同时审视哪些规则值得调整。",
+    action: "请教一位信任的人，了解他的一条相关经验。"
+  },
+  {
+    number: 6,
+    id: "major-06",
+    arcana: "major",
+    suit: null,
+    name: "恋人",
+    en: "The Lovers",
+    symbol: "♡",
+    upright: "关系与选择需要真诚，也需要与你重视的价值一致。坦白沟通能帮助双方看见真正的需求。",
+    reversed: "分歧或犹豫可能来自需求没有说清。先厘清自己的取舍，再讨论共同方向。",
+    action: "写下你在这段关系或选择中最看重的两件事。"
+  },
+  {
+    number: 7,
+    id: "major-07",
+    arcana: "major",
+    suit: null,
+    name: "战车",
+    en: "The Chariot",
+    symbol: "⚔",
+    upright: "明确方向后，专注与自律能帮助你稳步前进。驾驭不同的拉力，比一味加速更关键。",
+    reversed: "节奏失控或目标分散时，硬冲可能更累。先调整方向，再决定投入多少力气。",
+    action: "挑出今天最重要的一项任务，专注完成十五分钟。"
+  },
+  {
+    number: 8,
+    id: "major-08",
+    arcana: "major",
+    suit: null,
+    name: "力量",
+    en: "Strength",
+    symbol: "♌",
+    upright: "温柔的耐心和内在韧性，可能比强硬更有力量。接纳情绪，也能帮助你更从容地回应挑战。",
+    reversed: "自我怀疑或压抑情绪可能消耗了你的力气。对自己宽容一点，从可承受的小事做起。",
+    action: "回想一次你妥善应对困难的经历，记下当时做对的一件事。"
+  },
+  {
+    number: 9,
+    id: "major-09",
+    arcana: "major",
+    suit: null,
+    name: "隐者",
+    en: "The Hermit",
+    symbol: "⚑",
+    upright: "独处与反思能帮助你辨认真正重要的方向。放慢脚步，不等于停下前进。",
+    reversed: "独处可能变成了与人隔绝，或外界声音盖过了自己的思考。适度连接与安静时间都值得保留。",
+    action: "留十分钟不看消息，写下此刻最想弄明白的问题。"
+  },
+  {
+    number: 10,
+    id: "major-10",
+    arcana: "major",
+    suit: null,
+    name: "命运之轮",
+    en: "Wheel of Fortune",
+    symbol: "☸",
+    upright: "变化正在提醒你，许多事有其周期。把握能行动的部分，同时给不可控的因素留出空间。",
+    reversed: "计划遇到波动时，执着于原来的节奏可能让人疲惫。调整预期，有助于重新找到立足点。",
+    action: "把当前烦恼分成可控制与不可控制两栏。"
+  },
+  {
+    number: 11,
+    id: "major-11",
+    arcana: "major",
+    suit: null,
+    name: "正义",
+    en: "Justice",
+    symbol: "⚖",
+    upright: "事实、公平和责任值得认真对待。尽量依据完整信息做判断，也考虑选择带来的影响。",
+    reversed: "信息不全或立场失衡，可能让判断出现偏差。先核实关键事实，再讨论结论。",
+    action: "为一项待决定的事分别写下支持与反对的依据。"
+  },
+  {
+    number: 12,
+    id: "major-12",
+    arcana: "major",
+    suit: null,
+    name: "倒吊人",
+    en: "The Hanged Man",
+    symbol: "⌛",
+    upright: "暂时停顿可能带来不同的视角。放下急于推进的冲动，或许能看见原先忽略的选择。",
+    reversed: "等待若没有目的，容易变成消耗。想想你需要的新视角是什么，以及何时重新行动。",
+    action: "换一个人的立场，用一句话重述眼前的问题。"
+  },
+  {
+    number: 13,
+    id: "major-13",
+    arcana: "major",
+    suit: null,
+    name: "死神",
+    en: "Death",
+    symbol: "☠",
+    upright: "一个阶段可能正在结束，为新的安排腾出空间。这张牌谈的是转变与告别，适合辨认哪些旧做法已不再适用。",
+    reversed: "对变化的不舍可能让你停留在旧模式里。允许自己慢慢适应，不必强迫自己立刻释怀。",
+    action: "写下一件准备逐步放下的旧习惯。"
+  },
+  {
+    number: 14,
+    id: "major-14",
+    arcana: "major",
+    suit: null,
+    name: "节制",
+    en: "Temperance",
+    symbol: "⚗",
+    upright: "平衡来自持续调整，而非一次做到完美。把不同需求调和起来，能找到更稳定的节奏。",
+    reversed: "某个方面可能投入过多，打乱了整体节奏。试着温和地校准，而不必突然走向另一端。",
+    action: "为今天的安排留出一段短暂的休息时间。"
+  },
+  {
+    number: 15,
+    id: "major-15",
+    arcana: "major",
+    suit: null,
+    name: "恶魔",
+    en: "The Devil",
+    symbol: "⛓",
+    upright: "留意让你感到受限的欲望、习惯或关系模式。看清束缚从哪里来，是重新选择的开始。",
+    reversed: "你可能开始觉察某种旧束缚，并尝试松开它。改变可以循序渐进，从一个具体边界开始。",
+    action: "记录一次让你不自在的惯性反应，以及它出现的情境。"
+  },
+  {
+    number: 16,
+    id: "major-16",
+    arcana: "major",
+    suit: null,
+    name: "高塔",
+    en: "The Tower",
+    symbol: "⚡",
+    upright: "突如其来的变化可能冲击原有认知，也可能揭示需要面对的事实。先稳住自己，再看哪些部分值得重建。",
+    reversed: "你可能已觉察到某种不稳，却还在回避调整。小范围检查与修正，能帮助你更踏实地应对变化。",
+    action: "找出当前计划中最需要核实的一项假设。"
+  },
+  {
+    number: 17,
+    id: "major-17",
+    arcana: "major",
+    suit: null,
+    name: "星星",
+    en: "The Star",
+    symbol: "☆",
+    upright: "希望与恢复正在成为可依靠的方向。给自己一点时间，看见已经存在的支持与进展。",
+    reversed: "失望可能让你暂时看不到希望。先寻找一个具体而微小的支持点，不必勉强乐观。",
+    action: "记下今天值得感激的一件具体小事。"
+  },
+  {
+    number: 18,
+    id: "major-18",
+    arcana: "major",
+    suit: null,
+    name: "月亮",
+    en: "The Moon",
+    symbol: "◐",
+    upright: "不确定、梦境或情绪可能让眼前的事显得模糊。允许感受存在，同时留意想象与事实的区别。",
+    reversed: "一些迷雾可能开始散去，也可能提醒你核实先前的猜测。慢慢梳理，比急着找答案更稳妥。",
+    action: "写下一个担忧，再标出其中已经确认的事实。"
+  },
+  {
+    number: 19,
+    id: "major-19",
+    arcana: "major",
+    suit: null,
+    name: "太阳",
+    en: "The Sun",
+    symbol: "☀",
+    upright: "清晰、活力与喜悦值得被看见。分享进展，也给自己认可已有努力的机会。",
+    reversed: "暂时缺少热情，不代表你没有收获。留意被忽略的小进步，或调整过高的期待。",
+    action: "把近期完成的一件小事告诉一位信任的人。"
+  },
+  {
+    number: 20,
+    id: "major-20",
+    arcana: "major",
+    suit: null,
+    name: "审判",
+    en: "Judgement",
+    symbol: "♬",
+    upright: "回顾过往能帮助你看清现在想回应的召唤。诚实面对经验之后，可以做出更符合自己的选择。",
+    reversed: "过度自责或迟疑，可能让你难以翻篇。试着从经验中提取教训，而不是只给自己下评语。",
+    action: "写下一件过去的事教会你的一个具体经验。"
+  },
+  {
+    number: 21,
+    id: "major-21",
+    arcana: "major",
+    suit: null,
+    name: "世界",
+    en: "The World",
+    symbol: "◎",
+    upright: "一个阶段的完成感值得庆祝，也适合回看一路积累的成长。新的循环可以在充分收尾后展开。",
+    reversed: "事情可能接近尾声，却还有一个环节需要整理。检查未完成的小项，给这段经历一个清楚的结尾。",
+    action: "列出一件即将收尾的事，完成其中一个小步骤。"
+  },
+  {
+    id: "minor-wands-01",
+    arcana: "minor",
+    suit: "wands",
+    number: 1,
+    name: "权杖王牌",
+    en: "Ace of Wands",
+    symbol: "⚚",
+    upright: "新的热情或创意值得试探。先点燃一个小实验，再观察它是否值得持续投入。",
+    reversed: "灵感可能被疲惫或犹豫压住。降低起步门槛，看看真正让你提不起劲的原因。",
+    action: "写下一个新点子，花十分钟做出最小样例。"
+  },
+  {
+    id: "minor-wands-02",
+    arcana: "minor",
+    suit: "wands",
+    number: 2,
+    name: "权杖二",
+    en: "Two of Wands",
+    symbol: "⚚",
+    upright: "你已看见几个可能方向，适合比较它们的范围与代价。选择可以逐步验证的路线。",
+    reversed: "计划停在远景里，可能是因为害怕选错。把抽象目标拆成近期可检验的选择。",
+    action: "给两个方案各写一条下一步和一条顾虑。"
+  },
+  {
+    id: "minor-wands-03",
+    arcana: "minor",
+    suit: "wands",
+    number: 3,
+    name: "权杖三",
+    en: "Three of Wands",
+    symbol: "⚚",
+    upright: "早期投入开始带来视野，合作或等待反馈都可能有用。保持耐心并留意外界信号。",
+    reversed: "期待的进展尚未出现，或协作节奏不同。重新确认时间表与沟通方式。",
+    action: "给正在推进的事设一个具体的回看日期。"
+  },
+  {
+    id: "minor-wands-04",
+    arcana: "minor",
+    suit: "wands",
+    number: 4,
+    name: "权杖四",
+    en: "Four of Wands",
+    symbol: "⚚",
+    upright: "阶段性的稳定和相聚值得庆祝。让成果成为继续前行的支点。",
+    reversed: "表面顺利之下，可能还有安排或归属感需要讨论。先整理细节再庆祝。",
+    action: "感谢一位支持过你的人。"
+  },
+  {
+    id: "minor-wands-05",
+    arcana: "minor",
+    suit: "wands",
+    number: 5,
+    name: "权杖五",
+    en: "Five of Wands",
+    symbol: "⚚",
+    upright: "不同意见会碰撞出想法，也可能分散精力。把讨论聚焦在共同目标上。",
+    reversed: "你可能回避必要的争论，或已经厌倦无效竞争。先明确争议到底在哪里。",
+    action: "用一句话写出当前分歧的核心。"
+  },
+  {
+    id: "minor-wands-06",
+    arcana: "minor",
+    suit: "wands",
+    number: 6,
+    name: "权杖六",
+    en: "Six of Wands",
+    symbol: "⚚",
+    upright: "已有努力获得认可，适合分享进展并感谢同行者。保持踏实，继续照看未完成的部分。",
+    reversed: "外界反馈不如预期，可能让你忽略自己的成长。区分结果与自我价值。",
+    action: "记录一项近期完成的具体工作。"
+  },
+  {
+    id: "minor-wands-07",
+    arcana: "minor",
+    suit: "wands",
+    number: 7,
+    name: "权杖七",
+    en: "Seven of Wands",
+    symbol: "⚚",
+    upright: "面对挑战时，你可以坚定维护自己的位置。选择最值得守住的边界。",
+    reversed: "持续防守让人疲惫，也可能把每个问题都看成威胁。重新评估哪些事值得投入。",
+    action: "列出一项需要守住的边界及其原因。"
+  },
+  {
+    id: "minor-wands-08",
+    arcana: "minor",
+    suit: "wands",
+    number: 8,
+    name: "权杖八",
+    en: "Eight of Wands",
+    symbol: "⚚",
+    upright: "信息或行动可能迅速推进。抓住清楚的机会，同时给细节留一点核对时间。",
+    reversed: "消息太多或节奏被打乱时，急着回应容易出错。先理顺先后顺序。",
+    action: "给今天收到的待办按紧急程度排序。"
+  },
+  {
+    id: "minor-wands-09",
+    arcana: "minor",
+    suit: "wands",
+    number: 9,
+    name: "权杖九",
+    en: "Nine of Wands",
+    symbol: "⚚",
+    upright: "你积累了应对经验，谨慎能保护成果。也允许自己适时休息，别一直紧绷。",
+    reversed: "旧经验可能让你过度戒备。检查眼前风险是否真的与过去相同。",
+    action: "写下一项真实风险和一项只是担忧的事。"
+  },
+  {
+    id: "minor-wands-10",
+    arcana: "minor",
+    suit: "wands",
+    number: 10,
+    name: "权杖十",
+    en: "Ten of Wands",
+    symbol: "⚚",
+    upright: "责任与任务堆积，说明你承担了不少。梳理优先级并寻求分担，才能持续前行。",
+    reversed: "负担可能已超过承受范围，或你仍习惯全部揽下。试着放下一项非必要任务。",
+    action: "从待办中找出一件可以延期或请人协助的事。"
+  },
+  {
+    id: "minor-wands-11",
+    arcana: "minor",
+    suit: "wands",
+    number: 11,
+    name: "权杖侍从",
+    en: "Page of Wands",
+    symbol: "⚚",
+    upright: "好奇与行动的冲动带来学习机会。用探索的心态试一小步。",
+    reversed: "热情容易散开，或还没准备好就急着承诺。先聚焦一个方向。",
+    action: "围绕一个新兴趣找一份入门资料。"
+  },
+  {
+    id: "minor-wands-12",
+    arcana: "minor",
+    suit: "wands",
+    number: 12,
+    name: "权杖骑士",
+    en: "Knight of Wands",
+    symbol: "⚚",
+    upright: "勇于追求想法能带来突破。行动前确认方向和资源，避免只靠一时兴奋。",
+    reversed: "冲得太快可能遗漏同伴的感受，或迟迟不敢启动。用可回头的小实验试水。",
+    action: "为想做的事设一个二十分钟试做时段。"
+  },
+  {
+    id: "minor-wands-13",
+    arcana: "minor",
+    suit: "wands",
+    number: 13,
+    name: "权杖王后",
+    en: "Queen of Wands",
+    symbol: "⚚",
+    upright: "你能为团队或自己创造温暖而有活力的空间。自信地表达，也倾听不同声音。",
+    reversed: "过度操心别人的反应，可能遮住自己的需要。把精力收回到能影响的事。",
+    action: "主动表达一次具体的赞赏。"
+  },
+  {
+    id: "minor-wands-14",
+    arcana: "minor",
+    suit: "wands",
+    number: 14,
+    name: "权杖国王",
+    en: "King of Wands",
+    symbol: "⚚",
+    upright: "清晰的愿景与稳定的行动有助于带动局面。领导力也包含分工与倾听。",
+    reversed: "强推计划或缺少方向，都可能降低协作意愿。重新确认共同目标。",
+    action: "把当前目标写成一句可与伙伴讨论的话。"
+  },
+  {
+    id: "minor-cups-01",
+    arcana: "minor",
+    suit: "cups",
+    number: 1,
+    name: "圣杯王牌",
+    en: "Ace of Cups",
+    symbol: "◡",
+    upright: "情感与连接有了新的开口。允许自己感受，也给关系自然发展的空间。",
+    reversed: "情绪被压住或期待太满，可能让你难以亲近自己。先照顾感受，再决定如何表达。",
+    action: "写下今天最明显的感受及其触发点。"
+  },
+  {
+    id: "minor-cups-02",
+    arcana: "minor",
+    suit: "cups",
+    number: 2,
+    name: "圣杯二",
+    en: "Two of Cups",
+    symbol: "◡",
+    upright: "平等的交流让关系更容易靠近。认真听见对方，也说出自己的真实需要。",
+    reversed: "双方的期待可能没有对齐。一次温和的澄清比猜测更有效。",
+    action: "向一位重要的人提出一个开放式问题。"
+  },
+  {
+    id: "minor-cups-03",
+    arcana: "minor",
+    suit: "cups",
+    number: 3,
+    name: "圣杯三",
+    en: "Three of Cups",
+    symbol: "◡",
+    upright: "与朋友分享喜悦和支持，可以增强归属感。留意谁与你一起感到自在。",
+    reversed: "社交过量或小圈子的误会可能消耗你。安排一点独处，厘清自己的感受。",
+    action: "给一位朋友发一条真诚的问候。"
+  },
+  {
+    id: "minor-cups-04",
+    arcana: "minor",
+    suit: "cups",
+    number: 4,
+    name: "圣杯四",
+    en: "Four of Cups",
+    symbol: "◡",
+    upright: "对熟悉事物提不起兴趣，可能提醒你需要调整节奏。看看眼前是否有被忽略的选择。",
+    reversed: "你可能开始重新开放，也可能仍在等待理想答案。试着接触一个小小的新体验。",
+    action: "列出今天可尝试的一件轻松小事。"
+  },
+  {
+    id: "minor-cups-05",
+    arcana: "minor",
+    suit: "cups",
+    number: 5,
+    name: "圣杯五",
+    en: "Five of Cups",
+    symbol: "◡",
+    upright: "失落值得被承认，但它不是故事的全部。给自己时间，也看看尚存的支持。",
+    reversed: "反复回想遗憾可能妨碍恢复。试着从经历中提取可用的经验。",
+    action: "写下一项失去的东西和一项仍拥有的支持。"
+  },
+  {
+    id: "minor-cups-06",
+    arcana: "minor",
+    suit: "cups",
+    number: 6,
+    name: "圣杯六",
+    en: "Six of Cups",
+    symbol: "◡",
+    upright: "往日记忆能带来温暖，适合重拾简单的快乐。让怀念成为连接当下的线索。",
+    reversed: "美化过去可能让你难以回应眼前的变化。分清记忆中想保留的是什么。",
+    action: "记录一段好回忆，并写下现在能重现的一小部分。"
+  },
+  {
+    id: "minor-cups-07",
+    arcana: "minor",
+    suit: "cups",
+    number: 7,
+    name: "圣杯七",
+    en: "Seven of Cups",
+    symbol: "◡",
+    upright: "想象中的选项很多，先找出真正符合需要的两个。清晰比完美更有用。",
+    reversed: "幻想或信息过载让选择迟滞。缩小范围，核实一个关键条件。",
+    action: "将备选项缩减到两个，并写出选择标准。"
+  },
+  {
+    id: "minor-cups-08",
+    arcana: "minor",
+    suit: "cups",
+    number: 8,
+    name: "圣杯八",
+    en: "Eight of Cups",
+    symbol: "◡",
+    upright: "当旧事不再滋养你，离开也可能是一种成长。尊重不舍，慢慢寻找新方向。",
+    reversed: "你可能想走却迟疑，或离开后仍放不下。确认自己真正需要结束的部分。",
+    action: "写下目前最想调整的一种相处方式。"
+  },
+  {
+    id: "minor-cups-09",
+    arcana: "minor",
+    suit: "cups",
+    number: 9,
+    name: "圣杯九",
+    en: "Nine of Cups",
+    symbol: "◡",
+    upright: "愿望逐渐清晰，值得享受已有的满足感。分享感激，也留意持续的需求。",
+    reversed: "短暂满足可能掩盖更深的空缺。问问自己快乐来自哪里、能否持续。",
+    action: "列出今天让你满意的三件小事。"
+  },
+  {
+    id: "minor-cups-10",
+    arcana: "minor",
+    suit: "cups",
+    number: 10,
+    name: "圣杯十",
+    en: "Ten of Cups",
+    symbol: "◡",
+    upright: "亲密和支持能让人感到安稳。珍惜共同生活中的具体善意，而非追求完美画面。",
+    reversed: "对和谐的期待太高，可能遮住真实分歧。用温和对话替代假装没事。",
+    action: "向家人或朋友表达一次具体感谢。"
+  },
+  {
+    id: "minor-cups-11",
+    arcana: "minor",
+    suit: "cups",
+    number: 11,
+    name: "圣杯侍从",
+    en: "Page of Cups",
+    symbol: "◡",
+    upright: "敏感而真诚的表达可能打开新对话。保持好奇，同时给情绪一点边界。",
+    reversed: "情绪消息容易被误读，或你害怕表达得不够好。先整理感受再发出。",
+    action: "写一段不急于发送的心情笔记。"
+  },
+  {
+    id: "minor-cups-12",
+    arcana: "minor",
+    suit: "cups",
+    number: 12,
+    name: "圣杯骑士",
+    en: "Knight of Cups",
+    symbol: "◡",
+    upright: "带着善意靠近想重视的人或事。浪漫的心意也需要落实在可靠的行动里。",
+    reversed: "理想化或摇摆可能让承诺模糊。用小而真实的举动检验心意。",
+    action: "向一位在意的人做一件具体而轻松的好事。"
+  },
+  {
+    id: "minor-cups-13",
+    arcana: "minor",
+    suit: "cups",
+    number: 13,
+    name: "圣杯王后",
+    en: "Queen of Cups",
+    symbol: "◡",
+    upright: "你有能力理解感受并照顾关系。关怀别人时，也保留自己的情绪空间。",
+    reversed: "过度承接别人的情绪，会让你疲惫。温柔地说出自己能做和不能做的事。",
+    action: "给自己留十分钟安静整理心情。"
+  },
+  {
+    id: "minor-cups-14",
+    arcana: "minor",
+    suit: "cups",
+    number: 14,
+    name: "圣杯国王",
+    en: "King of Cups",
+    symbol: "◡",
+    upright: "情感成熟体现在平稳回应，而非没有波动。用清楚的语言支持彼此。",
+    reversed: "压抑情绪或试图控制气氛，可能让关系疏远。先承认自己的感受。",
+    action: "在一次对话前写下你想表达的核心感受。"
+  },
+  {
+    id: "minor-swords-01",
+    arcana: "minor",
+    suit: "swords",
+    number: 1,
+    name: "宝剑王牌",
+    en: "Ace of Swords",
+    symbol: "⚔",
+    upright: "一个清楚的想法或事实能帮你看见问题。用它开启讨论，也保持求证。",
+    reversed: "思绪混乱或言辞太锋利，可能使重点失焦。先核实信息，再表达结论。",
+    action: "把复杂问题压缩成一个可以验证的问题。"
+  },
+  {
+    id: "minor-swords-02",
+    arcana: "minor",
+    suit: "swords",
+    number: 2,
+    name: "宝剑二",
+    en: "Two of Swords",
+    symbol: "⚔",
+    upright: "眼前的选择需要冷静权衡。给自己适当时间，同时设定决定的期限。",
+    reversed: "回避抉择可能让压力累积。先找出你最缺的一条信息。",
+    action: "为一个选择写下决定日期和待查事项。"
+  },
+  {
+    id: "minor-swords-03",
+    arcana: "minor",
+    suit: "swords",
+    number: 3,
+    name: "宝剑三",
+    en: "Three of Swords",
+    symbol: "⚔",
+    upright: "失望或伤心需要被看见。允许情绪存在，也给自己合适的支持。",
+    reversed: "旧伤可能仍在影响判断。恢复可以缓慢，不必要求自己立刻放下。",
+    action: "用几句话写下难受的原因，并做一次短暂休息。"
+  },
+  {
+    id: "minor-swords-04",
+    arcana: "minor",
+    suit: "swords",
+    number: 4,
+    name: "宝剑四",
+    en: "Four of Swords",
+    symbol: "⚔",
+    upright: "休息能让头脑重新清晰。暂时退出纷扰，是为下一步留出空间。",
+    reversed: "一直忙碌可能掩盖疲惫，或休息后仍难恢复。调整节奏并寻找可行的支持。",
+    action: "离开屏幕十分钟，做几次舒缓呼吸。"
+  },
+  {
+    id: "minor-swords-05",
+    arcana: "minor",
+    suit: "swords",
+    number: 5,
+    name: "宝剑五",
+    en: "Five of Swords",
+    symbol: "⚔",
+    upright: "争论里的输赢未必等于真正的收获。评估代价后，再决定是否继续交锋。",
+    reversed: "你可能还在回味冲突，或担心再次受伤。选一个能修复或止损的动作。",
+    action: "写下这场分歧中你真正想守住的东西。"
+  },
+  {
+    id: "minor-swords-06",
+    arcana: "minor",
+    suit: "swords",
+    number: 6,
+    name: "宝剑六",
+    en: "Six of Swords",
+    symbol: "⚔",
+    upright: "从纷扰中转向较平稳的环境需要过渡。轻装前行，允许自己慢慢适应。",
+    reversed: "旧问题可能随你进入新阶段。先处理一件能够解决的遗留小事。",
+    action: "整理一项积压的信息或物品。"
+  },
+  {
+    id: "minor-swords-07",
+    arcana: "minor",
+    suit: "swords",
+    number: 7,
+    name: "宝剑七",
+    en: "Seven of Swords",
+    symbol: "⚔",
+    upright: "策略与谨慎有其价值，透明度也会影响信任。检查计划中是否藏着需要说清的部分。",
+    reversed: "隐瞒或猜疑可能让合作变得费力。用事实核对，避免凭印象推断。",
+    action: "检查一项约定，标出需要再次确认的地方。"
+  },
+  {
+    id: "minor-swords-08",
+    arcana: "minor",
+    suit: "swords",
+    number: 8,
+    name: "宝剑八",
+    en: "Eight of Swords",
+    symbol: "⚔",
+    upright: "感觉受限时，先区分真实约束与自己的假设。可能有一条小路尚未看见。",
+    reversed: "你开始意识到可以松开某些限制。尝试一个安全的小动作，验证新的可能。",
+    action: "写下一个阻碍，以及你能控制的一小部分。"
+  },
+  {
+    id: "minor-swords-09",
+    arcana: "minor",
+    suit: "swords",
+    number: 9,
+    name: "宝剑九",
+    en: "Nine of Swords",
+    symbol: "⚔",
+    upright: "担忧在夜里可能被放大。把思绪写下来，有助于分清问题与想象。",
+    reversed: "焦虑可能逐渐缓和，或仍需要更多照顾。把难题拆成可处理的部分。",
+    action: "睡前把脑中的待办写到纸上。"
+  },
+  {
+    id: "minor-swords-10",
+    arcana: "minor",
+    suit: "swords",
+    number: 10,
+    name: "宝剑十",
+    en: "Ten of Swords",
+    symbol: "⚔",
+    upright: "某种模式走到尽头，承认结束有助于恢复。先照顾自己，再看下一段路。",
+    reversed: "你可能正慢慢走出低谷，却仍担心重演。给恢复留一点耐心。",
+    action: "选一件让自己轻松的小事，今天完成。"
+  },
+  {
+    id: "minor-swords-11",
+    arcana: "minor",
+    suit: "swords",
+    number: 11,
+    name: "宝剑侍从",
+    en: "Page of Swords",
+    symbol: "⚔",
+    upright: "好奇和敏锐能帮助你发现细节。发问之前先确认语气与事实。",
+    reversed: "仓促判断或过度留意他人动向，可能增加误会。把注意力放回可验证的信息。",
+    action: "向相关人提出一个具体的澄清问题。"
+  },
+  {
+    id: "minor-swords-12",
+    arcana: "minor",
+    suit: "swords",
+    number: 12,
+    name: "宝剑骑士",
+    en: "Knight of Swords",
+    symbol: "⚔",
+    upright: "果断表达有助于推进停滞的讨论。速度要配合信息的完整度。",
+    reversed: "急于辩赢或行动过快，可能让人忽略关键条件。先暂停并核对依据。",
+    action: "发送重要消息前重读一次，并删掉多余的推断。"
+  },
+  {
+    id: "minor-swords-13",
+    arcana: "minor",
+    suit: "swords",
+    number: 13,
+    name: "宝剑王后",
+    en: "Queen of Swords",
+    symbol: "⚔",
+    upright: "清楚的边界与独立判断值得信赖。直率表达时，也可以保留温度。",
+    reversed: "过度苛刻或与人疏离，可能掩盖疲惫。给事实与感受都留位置。",
+    action: "用一句简明而友善的话说明自己的边界。"
+  },
+  {
+    id: "minor-swords-14",
+    arcana: "minor",
+    suit: "swords",
+    number: 14,
+    name: "宝剑国王",
+    en: "King of Swords",
+    symbol: "⚔",
+    upright: "理性规划能在复杂局面中带来秩序。让决定基于证据，也倾听执行者的意见。",
+    reversed: "过于强硬或陷入分析，可能让决定迟迟无法落地。选一条可测试的假设。",
+    action: "为一个决定列出两条依据和一个待验证点。"
+  },
+  {
+    id: "minor-pentacles-01",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 1,
+    name: "星币王牌",
+    en: "Ace of Pentacles",
+    symbol: "◈",
+    upright: "一项实际机会值得认真评估。把资源、时间与能力放在一起看，再迈出稳妥一步。",
+    reversed: "机会尚未成熟，或你担心投入不够。先算清最小成本与可行范围。",
+    action: "写下一个小项目需要的时间与材料。"
+  },
+  {
+    id: "minor-pentacles-02",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 2,
+    name: "星币二",
+    en: "Two of Pentacles",
+    symbol: "◈",
+    upright: "多项事务需要你灵活安排。保持节奏，也留意自己能承受的上限。",
+    reversed: "同时兼顾太多事容易失衡。重新排程，减少一项非必要承诺。",
+    action: "把本周三项主要任务排出顺序。"
+  },
+  {
+    id: "minor-pentacles-03",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 3,
+    name: "星币三",
+    en: "Three of Pentacles",
+    symbol: "◈",
+    upright: "合作与练习正让技能进步。明确分工，欣赏每个人带来的长处。",
+    reversed: "合作标准或职责不清，可能反复返工。用具体示例对齐期待。",
+    action: "向合作伙伴确认一个交付标准。"
+  },
+  {
+    id: "minor-pentacles-04",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 4,
+    name: "星币四",
+    en: "Four of Pentacles",
+    symbol: "◈",
+    upright: "守护已有资源能带来安全感。也看看是否有一些空间可供分享或尝试。",
+    reversed: "过于紧抓或花费失控都可能源于不安。先弄清真正需要保留什么。",
+    action: "查看一项近期支出或时间投入。"
+  },
+  {
+    id: "minor-pentacles-05",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 5,
+    name: "星币五",
+    en: "Five of Pentacles",
+    symbol: "◈",
+    upright: "资源紧张时，支持可能比独自硬撑更有用。把需求具体说出来。",
+    reversed: "困难开始出现缓解迹象，也可能仍需主动求助。留意可以利用的现实渠道。",
+    action: "向信任的人询问一项可用的帮助。"
+  },
+  {
+    id: "minor-pentacles-06",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 6,
+    name: "星币六",
+    en: "Six of Pentacles",
+    symbol: "◈",
+    upright: "给予与接受需要兼顾公平。看清双方能力，避免把好意变成负担。",
+    reversed: "付出不对等可能让关系紧张。重新谈清界限与期待。",
+    action: "回顾一次互相帮助，写下双方各自需要什么。"
+  },
+  {
+    id: "minor-pentacles-07",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 7,
+    name: "星币七",
+    en: "Seven of Pentacles",
+    symbol: "◈",
+    upright: "长期投入尚在生长阶段。评估成果与方法，决定哪些值得继续照料。",
+    reversed: "等待回报让你焦躁，或努力方向需要调整。用阶段性指标判断。",
+    action: "为一项长期目标记录当前进度。"
+  },
+  {
+    id: "minor-pentacles-08",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 8,
+    name: "星币八",
+    en: "Eight of Pentacles",
+    symbol: "◈",
+    upright: "反复练习能积累扎实的能力。关注每次小幅改进，而不只看最终成果。",
+    reversed: "机械重复或追求完美，可能让学习停滞。换一种反馈方式。",
+    action: "用二十分钟练一项技能，并记下一处改进。"
+  },
+  {
+    id: "minor-pentacles-09",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 9,
+    name: "星币九",
+    en: "Nine of Pentacles",
+    symbol: "◈",
+    upright: "独立建立的成果值得欣赏。享受安稳，也想想怎样继续维护它。",
+    reversed: "你可能难以安心享受成果，或过于依赖外部评价。回看真实的积累。",
+    action: "整理并记录自己近期完成的一项成果。"
+  },
+  {
+    id: "minor-pentacles-10",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 10,
+    name: "星币十",
+    en: "Ten of Pentacles",
+    symbol: "◈",
+    upright: "稳定的基础来自长期经营与彼此支持。讨论延续方式，让资源服务真正重视的生活。",
+    reversed: "家庭或团队对资源的期待可能不同。及早沟通，比默认一致更稳妥。",
+    action: "与相关人确认一项共同安排的细节。"
+  },
+  {
+    id: "minor-pentacles-11",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 11,
+    name: "星币侍从",
+    en: "Page of Pentacles",
+    symbol: "◈",
+    upright: "务实的好奇心适合开启学习。先掌握基本功，再探索更大的计划。",
+    reversed: "想法若只停在纸上，容易失去动力。选一个低成本的练习开始。",
+    action: "找一份入门材料并学十分钟。"
+  },
+  {
+    id: "minor-pentacles-12",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 12,
+    name: "星币骑士",
+    en: "Knight of Pentacles",
+    symbol: "◈",
+    upright: "可靠的节奏比短暂冲刺更有用。按计划前行，也定期检查方向。",
+    reversed: "重复劳动可能使你疲惫，或进度慢得需要调整。用小范围优化改善流程。",
+    action: "为一项例行任务定一个更省力的步骤。"
+  },
+  {
+    id: "minor-pentacles-13",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 13,
+    name: "星币王后",
+    en: "Queen of Pentacles",
+    symbol: "◈",
+    upright: "照料好日常资源，能让生活和工作更稳。实用的关怀同样有温度。",
+    reversed: "你可能为照顾别人耗尽精力，或忽略自己的实际需要。先补足基本安排。",
+    action: "整理一个常用空间，让明天更方便。"
+  },
+  {
+    id: "minor-pentacles-14",
+    arcana: "minor",
+    suit: "pentacles",
+    number: 14,
+    name: "星币国王",
+    en: "King of Pentacles",
+    symbol: "◈",
+    upright: "稳健管理能让资源发挥更长久的价值。做决定时兼顾实际回报与人的需求。",
+    reversed: "太看重控制或成果，可能挤压弹性。检视计划是否留有余地。",
+    action: "为本周计划留出一段可调整的时间。"
+  }
+];
+
+</script>
+<script>
+(function () {
+  'use strict';
+
+  const topicLabels = {
+    today: '今天的状态',
+    love: '感情与相处',
+    work: '工作与协作',
+    path: '未来规划与个人选择'
+  };
+  const suitLabels = {
+    wands: '权杖',
+    cups: '圣杯',
+    swords: '宝剑',
+    pentacles: '星币'
+  };
+  const suitThemes = {
+    wands: '行动与热情',
+    cups: '感受与关系',
+    swords: '判断与沟通',
+    pentacles: '资源与现实安排'
+  };
+  const actionPositions = ['建议', '下一步', '可尝试', '最小一步', '如何验证', '行动', '核心提醒', '此刻的提醒'];
+  // 每组依次是正位、逆位的象征性倾向：1 有利，0 中性，-1 需留意。
+  // 逆位不一律视为不利，例如恶魔逆位可指脱离束缚。
+  const trendTones = {
+    major: [
+      [1, 0], [1, -1], [0, -1], [1, -1], [1, -1], [0, -1],
+      [1, -1], [1, -1], [1, -1], [0, -1], [1, -1], [0, -1],
+      [0, -1], [0, -1], [1, -1], [-1, 1], [-1, -1], [1, -1],
+      [-1, 0], [1, 0], [1, -1], [1, 0]
+    ],
+    wands: [
+      [1, 0], [1, 0], [1, 0], [1, 0], [-1, -1], [1, -1], [0, -1],
+      [1, -1], [0, -1], [-1, -1], [1, 0], [1, -1], [1, 0], [1, -1]
+    ],
+    cups: [
+      [1, 0], [1, -1], [1, -1], [-1, -1], [-1, 0], [1, 0], [0, -1],
+      [0, -1], [1, -1], [1, -1], [1, 0], [1, -1], [1, 0], [1, 0]
+    ],
+    swords: [
+      [1, 0], [-1, -1], [-1, -1], [0, -1], [-1, -1], [1, 0], [-1, -1],
+      [-1, -1], [-1, -1], [-1, 0], [0, -1], [0, -1], [1, 0], [1, -1]
+    ],
+    pentacles: [
+      [1, 0], [0, -1], [1, -1], [0, -1], [-1, 0], [1, -1], [0, -1],
+      [1, -1], [1, -1], [1, -1], [1, 0], [1, 0], [1, 0], [1, -1]
+    ]
+  };
+
+  // 每张牌的正逆位各有一个只描述顺逆、节奏或阻力的信号，不代入用户默念的事情。
+  // 下标与牌库的主牌编号、各花色 1–14 编号一致。
+  const trendSignals = {
+    major: [
+      ['新局面打开，势头轻快', '起步冲动，节奏难定'],
+      ['可用力量集中，启动顺畅', '力量分散，启动受牵制'],
+      ['信号仍潜伏，宜静观', '直觉受扰，清晰度下降'],
+      ['滋长之势稳步累积', '滋养不足，进展受缓'],
+      ['边界稳固，进展有序', '过度僵硬，弹性受损'],
+      ['既有秩序提供承托', '旧有框架带来迟滞'],
+      ['不同力量趋于协调', '两端拉扯，难以合流'],
+      ['推进力量强，方向较清', '推进过急，方向偏移'],
+      ['柔韧力量增强，阻力可化', '耐力耗散，阻力放大'],
+      ['节奏放缓，轮廓待明', '过度退缩，线索变少'],
+      ['转机出现，动势增强', '变化失控，起伏增大'],
+      ['偏差可被校准，趋于平衡', '失衡持续，校准费力'],
+      ['停顿换得视角，势头未定', '停滞反复，难见新角度'],
+      ['旧势退去，新势未明', '难以转场，旧阻力延续'],
+      ['不同节奏渐趋调和', '失调累积，恢复变慢'],
+      ['束缚加重，阻力集中', '束缚松动，空间出现'],
+      ['突变冲击，短期不稳', '余波仍在，稳定难复'],
+      ['希望回升，远处有光', '信心减弱，方向模糊'],
+      ['迷雾增多，判断偏难', '迷雾未散，顾虑内转'],
+      ['明朗度上升，势头积极', '光亮受遮，顺势未稳'],
+      ['转折信号增强，通道渐开', '旧有回声干扰转向'],
+      ['阶段趋于完整，收束顺利', '接近收束，仍留缺口']
+    ],
+    wands: [
+      ['火种点燃，启动有力', '火种不稳，启动迟缓'],
+      ['远处方向可见，蓄势渐足', '方向摇摆，蓄势分散'],
+      ['外拓之势出现，后劲可期', '外拓受阻，后劲未接'],
+      ['基础稳住，节奏可续', '基础松动，稳定感减'],
+      ['力量相撞，推进有摩擦', '摩擦内耗，进展受拖'],
+      ['认可感增强，势头上扬', '回声不足，势头回落'],
+      ['守住优势，仍需持续发力', '防线吃紧，优势缩小'],
+      ['消息流动快，进展加速', '节奏过快，信息失序'],
+      ['守势仍在，恢复较慢', '警惕过重，后劲受限'],
+      ['负荷偏重，进程承压', '负担难卸，推进更慢'],
+      ['新热情带来试探空间', '热情起伏，试探难续'],
+      ['行动势能明显抬升', '冲劲过盛，方向易偏'],
+      ['内在热度稳定，带动周围', '热度外泄，带动减弱'],
+      ['主导力量清晰，节奏可控', '控制过强，节奏僵化']
+    ],
+    cups: [
+      ['感受流动顺畅，接纳度升', '感受堵塞，接纳度降'],
+      ['两股感受形成呼应', '呼应变弱，间距拉大'],
+      ['轻盈共振扩散，氛围回暖', '表面热闹，深层共振不足'],
+      ['心绪收拢，变化暂缓', '心绪封闭，良机难入'],
+      ['失落感压住向前的势头', '失落稍松，仍待回稳'],
+      ['旧有温暖提供缓冲', '旧有牵引仍在，进程放慢'],
+      ['选择太多，趋势尚散', '迷雾加厚，选项更难辨'],
+      ['离开旧流向，前路未定', '旧流向牵住脚步'],
+      ['满足感增加，情绪趋稳', '满足感落空，情绪摇摆'],
+      ['和合之势增强，氛围宽松', '表层和合松动，暗流增加'],
+      ['柔和信号出现，感受渐明', '感受尚浅，信号不稳'],
+      ['柔和推进，心绪有所回应', '期待过高，回落更快'],
+      ['感受稳定，包容力增强', '感受溢出，边界待辨'],
+      ['情绪承载力稳，波动可调', '压抑情绪，平衡待辨']
+    ],
+    swords: [
+      ['认知更清晰，阻滞可破', '思路分岔，清晰度下降'],
+      ['两端对峙，趋势暂时僵住', '犹豫加深，对峙难解'],
+      ['刺痛显现，短期承压', '余痛未平，恢复缓慢'],
+      ['暂停带来整理空间', '休整不足，恢复受阻'],
+      ['争胜之力制造消耗', '消耗延续，争胜难止'],
+      ['离开险滩，阻力渐弱', '航向不定，过渡拉长'],
+      ['迂回增多，明朗度下降', '遮掩加深，信任感减'],
+      ['受限感增强，行动收窄', '困局持续，出口未明'],
+      ['焦虑加重，趋势承压', '焦虑反复，恢复受阻'],
+      ['旧阶段触底，转向仍待时', '低谷松动，回升未稳'],
+      ['观察增多，仍需核实', '噪声太大，信号难辨'],
+      ['决断速度增快，阻力待量', '锋芒过急，碰撞加重'],
+      ['清楚边界带来稳定', '边界过硬，流动待看'],
+      ['理性统筹，走势较稳', '判断僵化，调整不易']
+    ],
+    pentacles: [
+      ['落地机会显现，基础可建', '起点未稳，资源暂散'],
+      ['多线并行，平衡尚可', '调度吃紧，平衡变难'],
+      ['协力成形，成果渐显', '配合失序，积累变慢'],
+      ['守成力量稳，变化放缓', '抓得过紧，流动受阻'],
+      ['资源紧缩，走势承压', '紧缩缓和，恢复仍慢'],
+      ['供需较衡，循环顺畅', '分配失衡，循环受扰'],
+      ['投入待发酵，趋势未明', '等待焦躁，累积受损'],
+      ['积累见效，步调扎实', '重复失焦，积累打折'],
+      ['独立基础增强，稳定度升', '安稳感减弱，依赖增加'],
+      ['长线基础稳固，后劲较足', '基础裂缝出现，后劲受损'],
+      ['务实新芽出现，仍需养成', '起步松散，落实受拖'],
+      ['稳定推进，速度虽慢仍稳', '步调变慢，进展待看'],
+      ['养护得当，韧性增强', '消耗增加，韧性待补'],
+      ['资源有序，稳定性较强', '掌控过紧，流动空间减']
+    ]
+  };
+
+  function silentSignal(entry) {
+    const pair = entry.card.arcana === 'major'
+      ? trendSignals.major[entry.card.number]
+      : trendSignals[entry.card.suit]?.[entry.card.number - 1];
+    return pair?.[entry.reversed ? 1 : 0] || '信号仍待观察';
+  }
+
+  function silentToneLabel(tone) {
+    return tone > 0 ? '偏顺' : tone < 0 ? '需留意' : '尚待观察';
+  }
+
+  function silentGroupTone(group) {
+    const score = group.reduce((sum, entry) => sum + toneOf(entry), 0);
+    const balance = score / group.length;
+    return balance >= 0.25 ? '偏顺' : balance <= -0.25 ? '偏谨慎' : '顺逆未定';
+  }
+
+  function silentMovement(firstTone, lastTone) {
+    if (lastTone > firstTone) return '相对转顺';
+    if (lastTone < firstTone) return '相对转紧';
+    return '顺逆强度相近';
+  }
+
+  function silentGroupProgress(chunk) {
+    if (chunk.length < 2) return '';
+    let easing = 0;
+    let tightening = 0;
+    for (let i = 1; i < chunk.length; i++) {
+      const change = toneOf(chunk[i]) - toneOf(chunk[i - 1]);
+      if (change > 0) easing++;
+      if (change < 0) tightening++;
+    }
+    const first = chunk[0];
+    const last = chunk[chunk.length - 1];
+    const transitions = easing || tightening
+      ? `相邻牌位有 ${easing} 次转顺、${tightening} 次转紧${easing && tightening ? '，起伏交替' : ''}。`
+      : '相邻牌位没有明显的顺逆跳变。';
+    return `按本组牌位顺序，从${reference(first)}到${reference(last)}，信号${silentMovement(toneOf(first), toneOf(last))}；${transitions}`;
+  }
+
+  function buildSilentTrend(entries, layout) {
+    const favorable = entries.filter(entry => toneOf(entry) > 0).length;
+    const challenging = entries.filter(entry => toneOf(entry) < 0).length;
+    const neutral = entries.length - favorable - challenging;
+    const balance = (favorable - challenging) / entries.length;
+    let verdict;
+    if (balance >= 0.25) {
+      verdict = '整体偏顺。有利的牌面信号较多，当前倾向更容易向顺畅的一侧发展。';
+    } else if (balance <= -0.25) {
+      verdict = '整体需谨慎。需要留意的牌面信号较多，当前倾向可能有较明显的阻力。';
+    } else if (favorable && challenging) {
+      verdict = '顺逆交织。有利与需留意的信号同时出现，整体走向仍有变数。';
+    } else {
+      verdict = '趋势尚不明确。牌面没有形成明显的顺或逆，暂时更适合保持观察。';
+    }
+    const first = entries[0];
+    const last = entries[entries.length - 1];
+    const path = entries.length === 1
+      ? `${reference(first)}呈现“${silentSignal(first)}”，属于${silentToneLabel(toneOf(first))}的信号。`
+      : `按牌位顺序看，${reference(first)}以“${silentSignal(first)}”开场，${reference(last)}以“${silentSignal(last)}”收束；前后信号分别${silentToneLabel(toneOf(first))}、${silentToneLabel(toneOf(last))}。`;
+    const overview = `${verdict}${path}`;
+    const pattern = `这组牌中有利倾向 ${favorable} 张、需留意倾向 ${challenging} 张、中性 ${neutral} 张。这里只归纳牌面的整体趋势，不推测你心里默念的具体事情；它也不保证实际结果。`;
+
+    const groups = Array.isArray(layout) && layout.length ? layout : [{ title: '牌阵', positions: entries.map(entry => entry.position) }];
+    let start = 0;
+    const groupReadings = [];
+    const sections = entries.length === 1 ? [] : groups.map((group, index) => {
+      const size = Math.min(Array.isArray(group.positions) ? group.positions.length : 0, entries.length - start);
+      const chunk = entries.slice(start, start + size);
+      start += size;
+      if (!chunk.length) return null;
+      groupReadings.push({ title: group.title || `第 ${index + 1} 组`, chunk });
+      const detail = chunk.map(entry => `${reference(entry)}显示“${silentSignal(entry)}”（${silentToneLabel(toneOf(entry))}）`).join('；');
+      return { title: group.title || `第 ${index + 1} 组`, text: `这一组${silentGroupTone(chunk)}。${detail}。${silentGroupProgress(chunk)}` };
+    }).filter(Boolean);
+    if (entries.length > 1 && start < entries.length) {
+      const rest = entries.slice(start);
+      groupReadings.push({ title: '其余牌位', chunk: rest });
+      sections.push({
+        title: '其余牌位',
+        text: `这一组${silentGroupTone(rest)}。${rest.map(entry => `${reference(entry)}显示“${silentSignal(entry)}”（${silentToneLabel(toneOf(entry))}）`).join('；')}。${silentGroupProgress(rest)}`
+      });
+    }
+    if (groupReadings.length > 1) {
+      const shifts = groupReadings.slice(1).map((current, index) => {
+        const previous = groupReadings[index];
+        const previousTone = previous.chunk.reduce((sum, entry) => sum + toneOf(entry), 0) / previous.chunk.length;
+        const currentTone = current.chunk.reduce((sum, entry) => sum + toneOf(entry), 0) / current.chunk.length;
+        return `从「${previous.title}」的${silentGroupTone(previous.chunk)}到「${current.title}」的${silentGroupTone(current.chunk)}，组间${silentMovement(previousTone, currentTone)}`;
+      });
+      sections.push({ title: '组间走势', text: `${shifts.join('；')}。这是牌位之间的象征性比较，仍需以实际发展核对。` });
+    }
+    return { overview, pattern, nextStep: '', sections };
+  }
+
+  function firstClause(text) {
+    return String(text || '')
+      .trim()
+      .replace(/^你可能(?:正在|已经|会|在)?/, '')
+      .split(/[，。；！？]/)[0]
+      .trim();
+  }
+
+  function entryAt(spread, cards, positions, index) {
+    const draw = spread[index];
+    const card = draw && cards[draw.index];
+    if (!card) return null;
+    return {
+      card,
+      reversed: !!draw.reversed,
+      position: positions[index] || `第 ${index + 1} 张`,
+      index
+    };
+  }
+
+  function reference(entry) {
+    return `「${entry.position}」的${entry.card.name}${entry.reversed ? '逆位' : '正位'}`;
+  }
+
+  function idea(entry) {
+    const clause = firstClause(entry.reversed ? entry.card.reversed : entry.card.upright);
+    return clause || (entry.card.suit ? suitThemes[entry.card.suit] : '眼前的重要议题');
+  }
+
+  function positionIndex(positions, count) {
+    if (count === 3) return 2;
+    if (count === 9) return 6;
+    if (count === 10) return 6;
+    if (count === 12) return 0;
+    for (const label of actionPositions) {
+      const index = positions.findIndex(position => position.includes(label));
+      if (index !== -1) return index;
+    }
+    return 0;
+  }
+
+  function clue(entry) {
+    return `${reference(entry)}所呈现的“${idea(entry)}”`;
+  }
+
+  function overviewBySpread(entries, count, topicLabel, layout) {
+    const at = index => entries[index];
+    const named = index => clue(at(index));
+    if (count === 1) {
+      return `围绕${topicLabel}，${named(0)}是此刻值得留意的线索。把它与自己的经历对照，看看它提醒你关注什么。`;
+    }
+    if (count === 3) {
+      return `围绕${topicLabel}，${named(0)}帮助回看事情如何走到这里；${named(1)}指出现在最需要辨认的部分。若沿着眼下的做法继续，${named(2)}可作为一种可能方向，而不是注定的结果。`;
+    }
+    if (count === 5) {
+      return `围绕${topicLabel}，${named(0)}交代选择发生的处境。${named(1)}与${named(2)}分别照见两条路径；${named(3)}提醒你比较真正需要付出的代价。最后以${named(4)}作为行动建议，先做能验证判断的一小步。`;
+    }
+    if (count === 7) {
+      return `围绕${topicLabel}，从${named(0)}走到${named(1)}，问题已经有了变化。${named(2)}可能解释尚未说清的影响，${named(3)}则点出当前阻碍；结合${named(4)}的外部条件，${named(5)}提供可尝试的方向。${named(6)}是沿此方向发展时值得观察的趋势。`;
+    }
+    if (count === 9) {
+      const phase = index => layout[index]?.title || ['过去', '现在', '未来'][index];
+      return `围绕${topicLabel}，九张牌分成${phase(0)}、${phase(1)}、${phase(2)}三段：${named(1)}提示此前反复出现的主题，${named(4)}使当下的焦点更清楚，${named(7)}则提供后续发展的观察线索。每组三张一起读，比把某一张当作定论更贴近这组牌阵。`;
+    }
+    if (count === 10) {
+      return `围绕${topicLabel}，凯尔特十字先以${named(0)}界定眼前处境，再由${named(1)}指出交叉的挑战。${named(2)}和${named(3)}可帮助理解问题的根基与来路，${named(4)}显示你所关注的目标。把${named(5)}的近期发展与${named(6)}的自身立场、${named(7)}的环境对照，最后再看${named(8)}所含的期待或担忧，以及${named(9)}呈现的可能结果。`;
+    }
+    if (count === 12) {
+      return `围绕${topicLabel}，这是一张按月份阅读的年度地图。${named(0)}开启这一年的主题，年中可特别留意${named(5)}与${named(6)}之间的变化，${named(11)}则为年末提供回看的线索。每个月的牌更适合作为当月的观察重点，不代表事件一定会发生。`;
+    }
+    if (count === 36) {
+      return `围绕${topicLabel}，这组自定义三十六张塔罗全景牌阵依次梳理现状、内在、环境、阻力、选择与整合。${named(1)}帮助确认已知事实，${named(6)}提示内在需求，${named(14)}指向可用资源。先以${named(26)}比较取舍，再参考${named(27)}尝试最小一步，最后用${named(35)}收束这次阅读。`;
+    }
+    return `围绕${topicLabel}，${named(0)}指出起点，${named(entries.length - 1)}提供接下来值得观察的方向。请连同每张牌的位置一起核对这些线索。`;
+  }
+
+  function summarySections(entries, count, layout) {
+    const at = index => clue(entries[index]);
+    if (count === 5) return [
+      { title: '两条路径', text: `先以${at(0)}确认问题。${at(1)}与${at(2)}各自强调了不同条件；把它们当作选项的侧面，而不是替你决定答案。` },
+      { title: '权衡与行动', text: `${at(3)}提醒你审视取舍的依据，${at(4)}则给出行动切口。可以先试一个代价可控的小步骤，再根据实际反馈调整。` }
+    ];
+    if (count === 7) return [
+      { title: '来路与现状', text: `${at(0)}是先前的背景，${at(1)}显示它在此刻留下什么。${at(2)}提示尚未充分看见的影响，值得用事实或对话进一步核实。` },
+      { title: '阻碍与环境', text: `${at(3)}指出需要处理的阻碍，${at(4)}说明外部条件可能怎样影响它。先区分能改变的部分与需要适应的部分。` },
+      { title: '建议与趋势', text: `${at(5)}适合作为下一步的参考；${at(6)}描述的是可能出现的趋势。采取行动后回看现实反馈，方向仍可以调整。` }
+    ];
+    if (count === 9) return layout.slice(0, 3).map((group, index) => {
+      const start = index * 3;
+      const descriptions = [
+        `这一组从${at(start)}展开，由${at(start + 1)}显示转折，${at(start + 2)}说明此前经验留下的影响。`,
+        `眼下的条件落在${at(start)}，${at(start + 1)}使核心焦点更清楚；${at(start + 2)}提示还需处理的部分。`,
+        `后续可以从${at(start)}开始尝试，并留意${at(start + 1)}。${at(start + 2)}是继续观察的信号，仍要结合实际变化判断。`
+      ];
+      return { title: group.title || ['过去', '现在', '未来'][index], text: descriptions[index] };
+    });
+    if (count === 10) return [
+      { title: '问题核心', text: `${at(0)}界定现状，${at(1)}显示交叉的挑战。两者之间的张力，是理解整组牌的起点。` },
+      { title: '根基与时间线', text: `${at(2)}与${at(3)}分别帮助理解深层背景和近期来路；${at(4)}指出明确的目标，${at(5)}提供下一阶段可能的发展。检查目标是否得到现实条件支持。` },
+      { title: '内外影响与结果', text: `${at(6)}是你的立场，${at(7)}说明周围条件。${at(8)}可能混合期待和担忧；${at(9)}应作为目前路径的可能结果来读，行动和环境变化都可能改写它。` }
+    ];
+    if (count === 12) return [0, 1, 2, 3].map(quarter => {
+      const start = quarter * 3;
+      return {
+        title: `第 ${quarter + 1} 季度`,
+        text: `${at(start)}为这一阶段开场，${at(start + 1)}提示中段的关注点，${at(start + 2)}帮助你在季度结束时回看变化。将三个月当成连续的观察过程。`
+      };
+    });
+    if (count === 36) {
+      const sections = [
+        `先用${at(0)}界定眼下最在意的焦点，再借${at(1)}核对哪些信息已经确认。${at(2)}呈现对此的感受，${at(3)}照见期待；把${at(4)}所指的外界条件放进同一画面，${at(5)}便提示事实、感受与期待之间需要澄清的张力。`,
+        `${at(6)}帮助辨认内在需求，${at(7)}提示这些需求在价值排序中的位置。把${at(8)}当作惯性反应的线索，再借${at(9)}检查这种反应是否与自我保护有关；同时用${at(10)}识别可用的优势，并核对${at(11)}提醒了什么可能被忽略，再决定怎样回应。`,
+        `先借${at(12)}思考相关的人，再用${at(13)}检查沟通能否传递真实需要。${at(14)}提供资源线索，${at(15)}提醒现实限制；可以借${at(16)}换一个视角，但${at(17)}涉及的信息仍需实际核实。`,
+        `${at(18)}与${at(19)}分别提示推进和拖延的力量。用${at(20)}梳理可控事项，用${at(21)}辨认不可控事项，才更容易看见${at(22)}要求怎样划清边界；${at(23)}则是采取行动前值得核实的风险线索。`,
+        `${at(24)}与${at(25)}让两种选择各自显形，再用${at(26)}比较真正重要的取舍依据。${at(27)}提示可以先试的最小一步，${at(28)}提醒谁可能提供帮助；把这两点与${at(29)}所示的节奏相配合，再根据实际反馈调整。`,
+        `从${at(30)}辨认可以放下的部分，同时看${at(31)}提示什么仍值得保留。${at(32)}说明判断尚需观察，${at(33)}给出验证进展的角度；为${at(34)}预留一次复盘，再以${at(35)}收束整组牌的核心提醒。`
+      ];
+      return layout.slice(0, 6).map((group, index) => ({ title: group.title || `第 ${index + 1} 组`, text: sections[index] }));
+    }
+    return [];
+  }
+
+  function toneOf(entry) {
+    const pair = entry.card.arcana === 'major'
+      ? trendTones.major[entry.card.number]
+      : trendTones[entry.card.suit]?.[entry.card.number - 1];
+    return pair?.[entry.reversed ? 1 : 0] ?? 0;
+  }
+
+  function relationshipText(first, second, subject) {
+    const firstTone = toneOf(first);
+    const secondTone = toneOf(second);
+    const firstMeaning = `“${idea(first)}”`;
+    const secondMeaning = `“${idea(second)}”`;
+    let reading;
+    if (firstTone > 0 && secondTone > 0) {
+      reading = `若${firstMeaning}在现实中得到确认，${secondMeaning}可作为接续的有利线索；先核对前一处的条件，再判断后一处能否成立。`;
+    } else if (firstTone < 0 && secondTone < 0) {
+      reading = `${firstMeaning}与${secondMeaning}都值得留意。先检查前一处的摩擦是否延续到后一处，再决定要处理的是同一问题还是两个问题。`;
+    } else if (firstTone * secondTone < 0) {
+      reading = firstTone > 0
+        ? `${firstMeaning}是可用的助力，${secondMeaning}却提示后续摩擦；可检验前一处的优势是否足以缓和后一处，不能直接假定它已解决。`
+        : `${firstMeaning}提示先处理的摩擦，${secondMeaning}则是后续可能出现的助力；先看阻力是否松动，再判断这份助力能发挥多少作用。`;
+    } else {
+      reading = `${firstMeaning}与${secondMeaning}尚未给出一致的顺逆信号；分别记录两处可验证的迹象，再观察它们是否互相影响。`;
+    }
+    const sharedSuit = first.card.suit && first.card.suit === second.card.suit
+      ? `两张同属${suitLabels[first.card.suit]}，可重点核对${suitThemes[first.card.suit]}在两个牌位间的变化。`
+      : first.card.suit && second.card.suit
+        ? `关注点也从${suitThemes[first.card.suit]}转向${suitThemes[second.card.suit]}。`
+        : '';
+    return `在${subject}上，对照${reference(first)}与${reference(second)}：${reading}${sharedSuit}`;
+  }
+
+  function relationshipSection(entries, count, layout) {
+    const links = {
+      3: [[0, 1, '来路与现状'], [1, 2, '现状与可能趋势']],
+      5: [[1, 2, '两条路径'], [3, 4, '取舍与行动']],
+      7: [[0, 1, '过去与现在'], [3, 5, '阻碍与建议']],
+      9: [[1, 4, '旧有模式与内在需求'], [4, 7, '内在需求与需要留意的部分']],
+      10: [[0, 1, '现状与挑战'], [4, 5, '目标与近期变化'], [6, 7, '自身态度与外在环境']],
+      12: [[2, 3, '第一、二季度交接'], [5, 6, '第二、三季度交接'], [8, 9, '第三、四季度交接']],
+      36: [[0, 6, '关注点与真正需求'], [14, 20, '资源与可控事项'], [23, 27, '风险与最小一步'], [29, 34, '可行节奏与复盘时机']]
+    }[count] || [[0, entries.length - 1, '起点与后续']];
+    const text = links
+      .filter(([first, second]) => entries[first] && entries[second])
+      .map(([first, second, subject]) => relationshipText(entries[first], entries[second], subject))
+      .join(' ');
+    return { title: layout.length > 1 ? '跨组联系' : '牌位联系', text };
+  }
+
+  function buildTarotSummary({ spread, cards, topic, count, groups } = {}) {
+    if (!Array.isArray(spread) || !Array.isArray(cards) || !spread.length) {
+      return { overview: '', pattern: '', nextStep: '', sections: [] };
+    }
+    const layout = Array.isArray(groups) && groups.length ? groups : [{ title: '牌阵', positions: spread.map((_, i) => `第 ${i + 1} 张`) }];
+    const positions = layout.flatMap(group => Array.isArray(group.positions) ? group.positions : []);
+    const entries = spread.map((_, i) => entryAt(spread, cards, positions, i)).filter(Boolean);
+    if (!entries.length) return { overview: '', pattern: '', nextStep: '', sections: [] };
+    if (topic === 'silent') return buildSilentTrend(entries, layout);
+
+    const total = entries.length;
+    const spreadCount = Number(count) === total ? Number(count) : total;
+    const first = entries[0];
+    const topicLabel = topicLabels[topic] || '眼前的问题';
+    const overview = overviewBySpread(entries, spreadCount, topicLabel, layout);
+
+    const suitCounts = { wands: 0, cups: 0, swords: 0, pentacles: 0 };
+    const majorCount = entries.filter(entry => entry.card.arcana === 'major').length;
+    const reversedCount = entries.filter(entry => entry.reversed).length;
+    entries.forEach(entry => { if (entry.card.suit in suitCounts) suitCounts[entry.card.suit]++; });
+    const orderedSuits = Object.keys(suitCounts).sort((a, b) => suitCounts[b] - suitCounts[a]);
+    const strongest = orderedSuits[0];
+    let pattern;
+    if (total === 1) {
+      const focus = first.card.suit ? suitThemes[first.card.suit] : '价值、阶段或视角的转换';
+      pattern = `${first.card.arcana === 'major' ? '大阿尔卡那' : suitLabels[first.card.suit] || '这张牌'}把${focus}放到了前景。具体可从${clue(first)}核对：${first.reversed ? '先检查卡住的地方，不必急着下结论。' : '看见已经具备的条件，再决定如何使用。'}`;
+    } else {
+      if (majorCount >= Math.ceil(total / 2)) {
+        const example = entries.find(entry => entry.card.arcana === 'major');
+        pattern = `大阿尔卡那占了较多位置，整组牌更偏向价值排序、阶段变化与看待问题的方式；${clue(example)}是其中一条具体线索。`;
+      } else if (suitCounts[strongest] >= Math.max(2, Math.ceil(total / 3))) {
+        const examples = entries.filter(entry => entry.card.suit === strongest).slice(0, 2);
+        pattern = `${suitLabels[strongest]}在牌阵中反复出现，${suitThemes[strongest]}可能是主线；从${clue(examples[0])}到${clue(examples[1])}，可以核对这条线索怎样变化。`;
+      } else {
+        const examples = entries.filter((entry, index, all) => entry.card.suit && all.findIndex(other => other.card.suit === entry.card.suit) === index).slice(0, 2);
+        pattern = examples.length > 1
+          ? `几种花色交错出现；${clue(examples[0])}偏向${suitThemes[examples[0].card.suit]}，${clue(examples[1])}偏向${suitThemes[examples[1].card.suit]}，值得一起核对。`
+          : `几种牌面线索交错出现；可先从${clue(first)}核对，再结合其他位置辨认变化。`;
+      }
+      if (reversedCount >= Math.ceil(total / 2)) {
+        const example = entries.find(entry => entry.reversed);
+        pattern += `其中 ${reversedCount} 张逆位提示先辨认摩擦，尤其要核对${clue(example)}。`;
+      } else if (reversedCount === 0) {
+        pattern += '全部为正位，可以留意哪些已有条件值得继续使用。';
+      } else {
+        const example = entries.find(entry => entry.reversed);
+        pattern += `其中 ${reversedCount} 张逆位可当作校准线索；先核对${clue(example)}，再和正位呈现的助力并排看。`;
+      }
+    }
+
+    const preferredIndex = positionIndex(positions, spreadCount);
+    const actionEntry = entries[preferredIndex] || first;
+    const action = String(actionEntry.card.action || '').trim().replace(/[。！？]+$/, '');
+    const nextStep = `从${reference(actionEntry)}出发，可以先${action || '写下一个可验证的小步骤'}。做完后再回看牌阵中对应的位置，核对它是否贴近你的实际情况。`;
+
+    return {
+      overview,
+      pattern,
+      nextStep,
+      sections: spreadCount > 1
+        ? [...summarySections(entries, spreadCount, layout), relationshipSection(entries, spreadCount, layout)]
+        : summarySections(entries, spreadCount, layout)
+    };
+  }
+
+  window.buildTarotSummary = buildTarotSummary;
+}());
+
+</script>
+<script>
+const cards = window.TAROT_CARDS;
+const topicNames = {today:'今日',love:'感情',work:'工作',path:'未来规划',silent:'心里默念'};
+const lenses = {today:'今天的提醒',love:'关于关系',work:'关于工作',path:'关于未来规划',silent:'关于心中的问题'};
+const layouts = {
+  1: [{title:'单张指引',positions:['此刻的提醒']}],
+  3: [{title:'时间线',positions:['过去的线索','现在的处境','可能趋势']}],
+  5: [{title:'决策',positions:['现状','选项 A 的可能走向','选项 B 的可能走向','取舍依据','建议行动']}],
+  7: [{title:'马蹄',positions:['过去','现在','隐藏影响','主要阻碍','外部影响','建议','可能趋势']}],
+  9: [
+    {title:'过去',positions:['起点','旧有模式','遗留影响']},
+    {title:'现在',positions:['眼前事实','内在需求','外部条件']},
+    {title:'未来',positions:['可选行动','需要留意','可能方向']}
+  ],
+  10: [
+    {title:'十字核心',positions:['现状','挑战','潜意识与根基','近期过去','显意识与目标','近期未来']},
+    {title:'侧边支柱',positions:['自身态度','外在环境','希望与担忧','结果趋势']}
+  ],
+  12: [
+    {title:'第一季度',positions:['一月','二月','三月']},
+    {title:'第二季度',positions:['四月','五月','六月']},
+    {title:'第三季度',positions:['七月','八月','九月']},
+    {title:'第四季度',positions:['十月','十一月','十二月']}
+  ],
+  36: [
+    {title:'现状',positions:['关注点','已知事实','当前感受','期待','外界条件','主要张力']},
+    {title:'内在',positions:['真正需求','价值排序','惯性反应','自我保护','已有优势','忽略的信号']},
+    {title:'环境',positions:['相关的人','沟通状态','可用资源','现实限制','可征询的视角','待核实信息']},
+    {title:'阻力',positions:['推进因素','拖延因素','可控事项','不可控事项','需要的边界','值得留意的风险']},
+    {title:'选择',positions:['选项 A','选项 B','取舍依据','最小一步','可求助的人','可行节奏']},
+    {title:'整合',positions:['可以放下','值得保留','仍需观察','如何验证','何时复盘','核心提醒']}
+  ]
+};
+const countNames = {1:'单张指引',3:'三张时间线',5:'五张决策',7:'七张马蹄',9:'时间九宫格',10:'凯尔特十字',12:'年度十二月',36:'自定义全景'};
+const spreadMeta = {
+  1:{description:'一张牌聚焦眼前最值得留意的主题。先读牌意，再想一个能落实的小动作。',note:'适合每日提醒或一个简短的问题。'},
+  3:{description:'按过去、现在、可能趋势依次读；第三张呈现的是可调整的走向。',note:'读法：过去如何影响现在？现在的选择会带来什么变化？'},
+  5:{description:'先看现状，再分别比较 A、B 两条路径；由取舍依据回到建议行动。',note:'提问时可以在心里先明确选项 A 和选项 B。'},
+  7:{description:'沿马蹄形从过去走到趋势；中间三张帮助辨认隐藏影响、阻碍与环境。',note:'最后一张表示当前条件下的可能趋势，可以随行动改变。'},
+  9:{description:'九张分为过去、现在、未来三行，每行再从三个角度阅读。',note:'本站定义的时间九宫格；先读每行，再串联过去影响、现在需求与未来行动。'},
+  10:{description:'先读十字核心的处境和发展，再读侧边支柱的自我、环境、期待与趋势。',note:'凯尔特十字有不同牌位版本；本站采用页面所列的十个位置。'},
+  12:{description:'从一月到十二月，每月一张；先读单月，再比较四个季度的主题变化。',note:'抽牌前请先确定想看的年份；牌意是观察线索，不代替现实安排。'},
+  36:{description:'本站自定义塔罗全景牌阵：现状、内在、环境、阻力、选择、整合六组，各六张。',note:'36 张大桌牌阵通常属于雷诺曼体系；这里使用的是塔罗牌与本站定义的读法。'}
+};
+const positionQuestions = {
+  1:['此刻最需要你看见什么？'],
+  3:['哪些过去的经验仍在影响此事？','现在真正发生了什么？','照当前条件发展，可能走向哪里？'],
+  5:['此刻面对的核心情况是什么？','选择 A 会带来什么可能性？','选择 B 会带来什么可能性？','你应依据什么原则比较两条路？','下一步最值得尝试什么？'],
+  7:['事情如何走到这里？','现在处于什么状态？','有哪些未被充分看见的因素？','主要卡点在哪里？','周围的人与环境带来什么影响？','你能主动调整哪一步？','若条件不变，可能出现什么趋势？'],
+  9:['事情从哪里开始？','过去反复出现什么模式？','过去留下了什么影响？','眼前有哪些可核实的事实？','你此刻真正需要什么？','周围有哪些资源或限制？','有哪些可以尝试的做法？','未来尤其需要观察什么？','沿现有路径可能走向哪里？'],
+  10:['这个问题当前的核心是什么？','什么力量在挑战或推动现状？','有哪些深层根基或未言明的动机？','近期发生过什么关键变化？','你有意识地期待什么？','接下来可能出现什么变化？','你正以什么态度面对它？','外部的人与环境提供什么条件？','你同时期待和担忧什么？','把整组线索合起来，可能走向什么结果？']
+};
+const topicButtons = [...document.querySelectorAll('.topic')];
+const countButtons = [...document.querySelectorAll('.count')];
+const cardButtons = [...document.querySelectorAll('.card-back')];
+const chooser = document.getElementById('chooser');
+const result = document.getElementById('result');
+const spreadBoard = document.getElementById('spreadBoard');
+const readingPanel = document.getElementById('readingPanel');
+const main = document.querySelector('main');
+let topic = 'today';
+let count = 1;
+let hand = [];
+let spread = [];
+let history = [];
+let selectedIndex = 0;
+function random(max){
+  if(window.crypto?.getRandomValues){const bytes=new Uint32Array(1);crypto.getRandomValues(bytes);return bytes[0]%max}
+  return Math.floor(Math.random()*max);
+}
+function dealHand(){
+  const selected=new Set(spread.map(choice=>choice.index));
+  const remaining=cards.map((_,index)=>index).filter(index=>!selected.has(index));
+  for(let i=remaining.length-1;i>0;i--){const j=random(i+1);[remaining[i],remaining[j]]=[remaining[j],remaining[i]]}
+  hand=remaining.slice(0,3).map(index=>({index,reversed:random(2)===1}));
+}
+function updateCount(){
+  document.getElementById('appTitle').textContent=`${countNames[count]} · ${count} 张`;
+  renderSpreadPreview();
+  updatePickingUI();
+}
+function getPositions(){return layouts[count].flatMap(group=>group.positions)}
+function getPositionQuestion(index){
+  if(positionQuestions[count])return positionQuestions[count][index];
+  const position=getPositions()[index];
+  if(count===12)return `在${position}，什么主题、资源或节奏值得留意？`;
+  const group=layouts[36][Math.floor(index/6)];
+  return `在「${group.title}」这一组，${position}提供了什么线索？`;
+}
+function renderSpreadPreview(){
+  const meta=spreadMeta[count];
+  document.getElementById('previewCount').textContent=`${String(count).padStart(2,'0')} 张`;
+  document.getElementById('previewTitle').textContent=countNames[count];
+  document.getElementById('previewDescription').textContent=meta.description;
+  document.getElementById('previewNote').textContent=meta.note;
+  const list=document.getElementById('positionPreview');
+  list.replaceChildren();
+  if(count===36){
+    layouts[36].forEach((group,index)=>{
+      const item=document.createElement('li');
+      item.append(textSpan('',`${String(index+1).padStart(2,'0')} · ${group.title}（6 张）`));
+      list.append(item);
+    });
+  }else{
+    getPositions().forEach((position,index)=>{
+      const item=document.createElement('li');
+      const number=document.createElement('em');
+      number.textContent=String(index+1).padStart(2,'0');
+      item.append(number,document.createTextNode(position));
+      list.append(item);
+    });
+  }
+}
+function textSpan(className,text){const element=document.createElement('span');element.className=className;element.textContent=text;return element}
+function renderPicked(){
+  const list=document.getElementById('pickedList');
+  list.replaceChildren();
+  spread.forEach((choice,index)=>{
+    const card=cards[choice.index];
+    const tile=document.createElement('div');
+    tile.className='picked-card';
+    tile.append(textSpan('picked-index',`${String(index+1).padStart(2,'0')} / ${getPositions()[index]}`));
+    tile.append(textSpan('picked-name',card.name));
+    tile.append(textSpan('picked-orient',choice.reversed?'逆位':'正位'));
+    list.append(tile);
+  });
+  list.scrollLeft=list.scrollWidth;
+}
+function updatePickingUI(){
+  const picked=spread.length;
+  const nextPosition=getPositions()[picked];
+  document.getElementById('setup').hidden=picked>0;
+  document.getElementById('pickContext').hidden=picked===0;
+  document.getElementById('picked').hidden=picked===0;
+  document.getElementById('pickTopic').textContent=`${topicNames[topic]} · ${countNames[count]}`;
+  document.getElementById('pickStatus').textContent=`已选 ${picked} / ${count} 张${nextPosition?`；「${nextPosition}」：${getPositionQuestion(picked)}`:''}`;
+  document.getElementById('drawPrompt').textContent=`03 / 第 ${picked+1} / ${count} 张 · ${nextPosition||'完成'}`;
+  document.getElementById('pickProgress').setAttribute('aria-valuemax',String(count));
+  document.getElementById('pickProgress').setAttribute('aria-valuenow',String(picked));
+  document.getElementById('pickFill').style.width=`${picked/count*100}%`;
+  document.getElementById('progress').textContent=picked===0?'01 — 03':'03 — 03';
+  ['左','中','右'].forEach((direction,index)=>cardButtons[index].setAttribute('aria-label',`第${picked+1}张，${nextPosition}：选择${direction}边的牌背`));
+  renderPicked();
+}
+function resetPicking(){
+  spread=[];
+  history=[];
+  dealHand();
+  result.hidden=true;
+  chooser.hidden=false;
+  main.classList.remove('expanded');
+  updatePickingUI();
+}
+function makeTile(index,position){
+  const choice=spread[index];
+  const card=cards[choice.index];
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='spread-tile';
+  button.dataset.index=String(index);
+  button.setAttribute('aria-label',`第${index+1}张，${position}：${card.name}${choice.reversed?'逆位':'正位'}，查看解读`);
+  button.setAttribute('aria-pressed',String(index===selectedIndex));
+  button.append(textSpan('tile-meta',String(index+1).padStart(2,'0')+' / '+position));
+  button.append(textSpan('tile-symbol',card.symbol));
+  button.append(textSpan('tile-name',card.name));
+  button.append(textSpan('tile-orient',choice.reversed?'↧ 逆位':'↑ 正位'));
+  button.addEventListener('click',()=>selectCard(index,true));
+  return button;
+}
+function buildBoard(){
+  spreadBoard.replaceChildren();
+  spreadBoard.dataset.count=String(count);
+  if(count===1)return;
+  let offset=0;
+  layouts[count].forEach((group,groupIndex)=>{
+    const section=document.createElement(count===36?'details':'section');
+    section.className='spread-section';
+    if(count===36&&groupIndex===0)section.open=true;
+    const heading=document.createElement(count===36?'summary':'h3');
+    heading.textContent=`${String(groupIndex+1).padStart(2,'0')} · ${group.title}`;
+    section.append(heading);
+    const tiles=document.createElement('div');
+    tiles.className='spread-tiles';
+    group.positions.forEach((position,localIndex)=>tiles.append(makeTile(offset+localIndex,position)));
+    offset+=group.positions.length;
+    section.append(tiles);
+    spreadBoard.append(section);
+  });
+}
+function selectCard(index,scroll){
+  selectedIndex=index;
+  const choice=spread[index];
+  const card=cards[choice.index];
+  const position=getPositions()[index];
+  const reversed=choice.reversed;
+  if(count===36)spreadBoard.children[Math.floor(index/6)].open=true;
+  spreadBoard.querySelectorAll('.spread-tile').forEach(tile=>tile.setAttribute('aria-pressed',String(Number(tile.dataset.index)===index)));
+  document.getElementById('prevCard').disabled=index===0;
+  document.getElementById('nextCard').disabled=index===spread.length-1;
+  document.getElementById('readingCounter').textContent=`${String(index+1).padStart(2,'0')} / ${String(spread.length).padStart(2,'0')}`;
+  document.getElementById('faceNum').textContent=card.arcana==='major'?String(card.number).padStart(2,'0'):String(card.number).padStart(2,'0');
+  document.getElementById('faceSymbol').textContent=card.symbol;
+  document.getElementById('faceTitle').textContent=card.name;
+  document.getElementById('faceEn').textContent=card.en;
+  document.getElementById('cardFace').classList.toggle('reversed',reversed);
+  document.getElementById('cardFace').setAttribute('aria-label',card.name+(reversed?'逆位':'正位'));
+  const arcana=card.arcana==='major'?'大阿尔卡那':'小阿尔卡那';
+  document.getElementById('resultKicker').textContent=`第 ${String(index+1).padStart(2,'0')} 张 · ${position} / ${arcana}`;
+  document.getElementById('resultTitle').textContent=card.name;
+  document.getElementById('orientation').textContent=reversed?'逆位 · 换个角度看':'正位 · 看见当下';
+  const readingText=`${lenses[topic]}，这张牌位于「${position}」。先问自己：${getPositionQuestion(index)} ${reversed?card.reversed:card.upright}`;
+  document.getElementById('reading').textContent=readingText;
+  document.getElementById('readingAnnounce').textContent=`第${index+1}张，${position}，${card.name}${reversed?'逆位':'正位'}。${readingText}`;
+  document.getElementById('action').textContent=`结合「${position}」：${card.action}`;
+  if(scroll&&matchMedia('(max-width: 820px)').matches){readingPanel.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'})}
+}
+function renderSummary(){
+  const summary=window.buildTarotSummary({spread,cards,topic,count,groups:layouts[count]});
+  const summaryTitle=topic==='silent'?'整体顺逆趋势':'完整汇总解读';
+  document.getElementById('summaryTitle').textContent=summaryTitle;
+  document.getElementById('wholeReading').setAttribute('aria-label',summaryTitle);
+  document.getElementById('summaryOverview').textContent=summary.overview;
+  document.getElementById('summaryPattern').textContent=summary.pattern;
+  document.getElementById('summaryNext').textContent=summary.nextStep;
+  document.getElementById('summaryNextBox').hidden=!summary.nextStep;
+  const sections=document.getElementById('summarySections');
+  sections.replaceChildren();
+  sections.hidden=summary.sections.length===0;
+  summary.sections.forEach(section=>{
+    const container=document.createElement('section');
+    container.className='summary-section';
+    const title=document.createElement('h4');
+    title.textContent=section.title;
+    const paragraph=document.createElement('p');
+    paragraph.textContent=section.text;
+    container.append(title,paragraph);
+    sections.append(container);
+  });
+}
+function showResult(){
+  selectedIndex=0;
+  result.dataset.count=String(count);
+  main.classList.toggle('expanded',count>1);
+  document.getElementById('spreadTitle').textContent=`${countNames[count]} · ${count} 张牌`;
+  document.getElementById('spreadHint').textContent=`${spreadMeta[count].description} ${topic==='silent'?'心里默念模式的汇总只看整体顺逆趋势。':''} ${count===36?'展开每一组，点击牌面查看解读。':'点击任意一张查看牌位解读。'}`;
+  renderSummary();
+  buildBoard();
+  selectCard(0,false);
+  chooser.hidden=true;
+  result.hidden=false;
+  document.getElementById('progress').textContent='03 — 03';
+  document.getElementById('spreadTitle').focus({preventScroll:true});
+  result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+}
+function choose(position){
+  const choice=hand[position];
+  if(!choice)return;
+  history.push(hand.map(item=>({...item})));
+  spread.push(choice);
+  if(spread.length===count){showResult();return}
+  dealHand();
+  updatePickingUI();
+  if(spread.length===1)chooser.scrollIntoView({behavior:'instant',block:'start'});
+}
+topicButtons.forEach(button=>button.addEventListener('click',()=>{
+  topic=button.dataset.topic;
+  topicButtons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  resetPicking();
+}));
+countButtons.forEach(button=>button.addEventListener('click',()=>{
+  count=Number(button.dataset.count);
+  countButtons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  updateCount();
+  resetPicking();
+}));
+cardButtons.forEach(button=>button.addEventListener('click',()=>choose(Number(button.dataset.card))));
+document.getElementById('undoPick').addEventListener('click',()=>{
+  if(!spread.length)return;
+  spread.pop();
+  hand=history.pop();
+  updatePickingUI();
+  cardButtons[0].focus({preventScroll:true});
+});
+document.getElementById('restartPick').addEventListener('click',()=>resetPicking());
+document.getElementById('prevCard').addEventListener('click',()=>selectCard(selectedIndex-1,false));
+document.getElementById('nextCard').addEventListener('click',()=>selectCard(selectedIndex+1,false));
+document.getElementById('again').addEventListener('click',()=>{
+  resetPicking();
+  cardButtons[0].focus({preventScroll:true});
+  chooser.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'nearest'});
+});
+document.getElementById('todayDate').textContent=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(new Date())+' · 78 张牌';
+updateCount();
+dealHand();
+</script>
+</body>
+</html>
